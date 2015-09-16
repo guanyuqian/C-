@@ -1,0 +1,9 @@
+obj\Debug\连连看看.pdb
+bin\Debug\连连看看.exe
+bin\Debug\连连看看.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\连连看看.adog.resources
+obj\Debug\连连看看.Form1.resources
+obj\Debug\连连看看.table.resources
+obj\Debug\连连看看.csproj.GenerateResource.Cache
+obj\Debug\连连看看.exe
