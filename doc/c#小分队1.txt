@@ -1,0 +1,13 @@
+2015年9月10日18:48:38
+1、团队成立
+	成员：弘弘、木炭、星辰、关关
+2、版本控制
+	版本控制：git
+	版本控制gui：TortoiseGit
+	仓库url：https://github.com/guanyuqian/OurCsharp.git
+	（
+		下载了git后在github上建立账号，配置一下tortoisegit，到时候带电脑过来确认下仓库连接
+		）
+3、下次会议
+	时间：2015年9月16日14:00:00-2015年9月16日17:00:00
+	地点：未定
