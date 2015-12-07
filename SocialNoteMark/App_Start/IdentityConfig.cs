@@ -19,7 +19,35 @@ namespace SocialNoteMark
         public Task SendAsync(IdentityMessage message)
         {
             // 在此处插入电子邮件服务可发送电子邮件。
-            return Task.FromResult(0);
+            // Credentials:
+            var credentialUserName = "chutianhong0@126.com";
+            var sentFrom = "chutianhong0@126.com";
+            var pwd = "123qwe.";
+
+            // Configure the client:
+            System.Net.Mail.SmtpClient client =
+                new System.Net.Mail.SmtpClient("smtp.126.com");
+
+            client.Port = 25;
+            client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+
+            // Create the credentials:
+            System.Net.NetworkCredential credentials =
+                new System.Net.NetworkCredential(credentialUserName, pwd);
+
+            client.EnableSsl = false;
+            client.Credentials = credentials;
+
+            // Create the message:
+            var mail =
+                new System.Net.Mail.MailMessage(sentFrom, message.Destination);
+
+            mail.Subject = message.Subject;
+            mail.Body = message.Body;
+
+            // Send:
+            return client.SendMailAsync(mail);
         }
     }
 

@@ -9,7 +9,7 @@ namespace SocialNoteMark.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(SocialNoteMark.Models.ApplicationDbContext context)
