@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -19,34 +22,27 @@ namespace SocialNoteMark
         public Task SendAsync(IdentityMessage message)
         {
             // 在此处插入电子邮件服务可发送电子邮件。
-            // Credentials:
-            var credentialUserName = "chutianhong0@126.com";
-            var sentFrom = "chutianhong0@126.com";
-            var pwd = "123qwe.";
+            string smtpServer = ConfigurationManager.AppSettings["EmailSmtpServer"];
+            int smtpPort = int.Parse(ConfigurationManager.AppSettings["EmailSmtpPort"]);
+            bool enableSsl = bool.Parse(ConfigurationManager.AppSettings["EmailEnableSSL"]);
+            string smtpUsername = ConfigurationManager.AppSettings["EmailSmtpUsername"];
+            string smtpPassword = ConfigurationManager.AppSettings["EmailSmtpPassword"];
+            string sentFrom = ConfigurationManager.AppSettings["EmailSentFrom"];
 
-            // Configure the client:
-            System.Net.Mail.SmtpClient client =
-                new System.Net.Mail.SmtpClient("smtp.126.com");
 
-            client.Port = 25;
-            client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
+            NetworkCredential credentials = new NetworkCredential(smtpUsername, smtpPassword);
 
-            // Create the credentials:
-            System.Net.NetworkCredential credentials =
-                new System.Net.NetworkCredential(credentialUserName, pwd);
+            SmtpClient client = new SmtpClient(smtpServer);
+                client.Port = smtpPort;
+                client.EnableSsl = enableSsl;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = credentials;
 
-            client.EnableSsl = false;
-            client.Credentials = credentials;
+            var mail =new System.Net.Mail.MailMessage(sentFrom, message.Destination);
+                mail.Subject = message.Subject;
+                mail.Body = message.Body;
 
-            // Create the message:
-            var mail =
-                new System.Net.Mail.MailMessage(sentFrom, message.Destination);
-
-            mail.Subject = message.Subject;
-            mail.Body = message.Body;
-
-            // Send:
             return client.SendMailAsync(mail);
         }
     }
