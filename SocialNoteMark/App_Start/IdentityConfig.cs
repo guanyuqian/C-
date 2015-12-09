@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -19,7 +22,28 @@ namespace SocialNoteMark
         public Task SendAsync(IdentityMessage message)
         {
             // 在此处插入电子邮件服务可发送电子邮件。
-            return Task.FromResult(0);
+            string smtpServer = ConfigurationManager.AppSettings["EmailSmtpServer"];
+            int smtpPort = int.Parse(ConfigurationManager.AppSettings["EmailSmtpPort"]);
+            bool enableSsl = bool.Parse(ConfigurationManager.AppSettings["EmailEnableSSL"]);
+            string smtpUsername = ConfigurationManager.AppSettings["EmailSmtpUsername"];
+            string smtpPassword = ConfigurationManager.AppSettings["EmailSmtpPassword"];
+            string sentFrom = ConfigurationManager.AppSettings["EmailSentFrom"];
+
+
+            NetworkCredential credentials = new NetworkCredential(smtpUsername, smtpPassword);
+
+            SmtpClient client = new SmtpClient(smtpServer);
+                client.Port = smtpPort;
+                client.EnableSsl = enableSsl;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = credentials;
+
+            var mail =new System.Net.Mail.MailMessage(sentFrom, message.Destination);
+                mail.Subject = message.Subject;
+                mail.Body = message.Body;
+
+            return client.SendMailAsync(mail);
         }
     }
 
