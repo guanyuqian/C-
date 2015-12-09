@@ -29,5 +29,12 @@ namespace SocialNoteMark.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<SocialNoteMark.Models.Note> Notes { get; set; }
+        public System.Data.Entity.DbSet<SocialNoteMark.Models.Tag> Tags { get; set; }
+        public System.Data.Entity.DbSet<SocialNoteMark.Models.UserTagLog> UserTagLogs { get; set; }
+        public System.Data.Entity.DbSet<SocialNoteMark.Models.NoteTagLog> NoteTagLogs { get; set; }
+        public System.Data.Entity.DbSet<SocialNoteMark.Models.Bulletin> Bulletins { get; set; }
+        public System.Data.Entity.DbSet<SocialNoteMark.Models.FriendRelation> FriendRelations { get; set; }
     }
 }

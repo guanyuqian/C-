@@ -164,10 +164,40 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512091117472_AddNote.cs" />
+    <Compile Include="Migrations\201512091117472_AddNote.Designer.cs">
+      <DependentUpon>201512091117472_AddNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512091122260_AddTag.cs" />
+    <Compile Include="Migrations\201512091122260_AddTag.Designer.cs">
+      <DependentUpon>201512091122260_AddTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512091129561_AddUserTagLog.cs" />
+    <Compile Include="Migrations\201512091129561_AddUserTagLog.Designer.cs">
+      <DependentUpon>201512091129561_AddUserTagLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512091132308_AddNoteTagLog.cs" />
+    <Compile Include="Migrations\201512091132308_AddNoteTagLog.Designer.cs">
+      <DependentUpon>201512091132308_AddNoteTagLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512091146015_AddBulletin.cs" />
+    <Compile Include="Migrations\201512091146015_AddBulletin.Designer.cs">
+      <DependentUpon>201512091146015_AddBulletin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512091149360_AddFriendRelation.cs" />
+    <Compile Include="Migrations\201512091149360_AddFriendRelation.Designer.cs">
+      <DependentUpon>201512091149360_AddFriendRelation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Bulletin.cs" />
+    <Compile Include="Models\FriendRelation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Note.cs" />
+    <Compile Include="Models\NoteTagLog.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\UserTagLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -237,6 +267,26 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512091117472_AddNote.resx">
+      <DependentUpon>201512091117472_AddNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512091122260_AddTag.resx">
+      <DependentUpon>201512091122260_AddTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512091129561_AddUserTagLog.resx">
+      <DependentUpon>201512091129561_AddUserTagLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512091132308_AddNoteTagLog.resx">
+      <DependentUpon>201512091132308_AddNoteTagLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512091146015_AddBulletin.resx">
+      <DependentUpon>201512091146015_AddBulletin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512091149360_AddFriendRelation.resx">
+      <DependentUpon>201512091149360_AddFriendRelation.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
