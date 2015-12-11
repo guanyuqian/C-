@@ -23,6 +23,13 @@ namespace SocialNoteMark
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/summernote").Include(
+                      "~/Scripts/summernote.js"));
+
+            bundles.Add(new StyleBundle("~/Content/summernote").Include(
+                      //"~/Content/font-awesome.css",
+                      "~/Content/summernote-bs3.css"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

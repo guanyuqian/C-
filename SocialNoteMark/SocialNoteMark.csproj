@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NoteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +189,18 @@
     <Compile Include="Migrations\201512091149360_AddFriendRelation.Designer.cs">
       <DependentUpon>201512091149360_AddFriendRelation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512101242154_AddNoteDescriptionChangeNameToTitle.cs" />
+    <Compile Include="Migrations\201512101242154_AddNoteDescriptionChangeNameToTitle.Designer.cs">
+      <DependentUpon>201512101242154_AddNoteDescriptionChangeNameToTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512101524448_ChangeUserIDtoUserName.cs" />
+    <Compile Include="Migrations\201512101524448_ChangeUserIDtoUserName.Designer.cs">
+      <DependentUpon>201512101524448_ChangeUserIDtoUserName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512101538370_AllowUserNameNull.cs" />
+    <Compile Include="Migrations\201512101538370_AllowUserNameNull.Designer.cs">
+      <DependentUpon>201512101538370_AllowUserNameNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bulletin.cs" />
@@ -204,6 +217,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\summernote-bs3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -221,6 +235,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\summernote.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -257,6 +272,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Note\Index.cshtml" />
+    <Content Include="Views\Note\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -286,6 +303,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512091149360_AddFriendRelation.resx">
       <DependentUpon>201512091149360_AddFriendRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512101242154_AddNoteDescriptionChangeNameToTitle.resx">
+      <DependentUpon>201512101242154_AddNoteDescriptionChangeNameToTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512101524448_ChangeUserIDtoUserName.resx">
+      <DependentUpon>201512101524448_ChangeUserIDtoUserName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512101538370_AllowUserNameNull.resx">
+      <DependentUpon>201512101538370_AllowUserNameNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

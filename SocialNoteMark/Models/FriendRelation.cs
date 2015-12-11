@@ -11,10 +11,8 @@ namespace SocialNoteMark.Models
         [Key]
         public int FriendRelationID { get; set; }
 
-        [Required]
-        public int FromID { get; set; }
+        public int FromName { get; set; }
 
-        [Required]
-        public int ToID { get; set; }
+        public int ToName { get; set; }
     }
 }

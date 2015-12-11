@@ -7,7 +7,7 @@
     <title>@ViewBag.Title - SocialNoteMark</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @RenderSection("head", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -38,6 +38,7 @@
         </footer>
     </div>
 
+    @RenderSection("models", required: false);
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

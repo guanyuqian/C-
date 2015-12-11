@@ -11,8 +11,7 @@ namespace SocialNoteMark.Models
         [Key]
         public int BulletionID { get; set; }
 
-        [Required]
-        public int UserID { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         public int Type { get; set; }

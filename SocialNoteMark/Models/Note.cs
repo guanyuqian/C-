@@ -11,13 +11,14 @@ namespace SocialNoteMark.Models
         [Key]
         public int NoteID { get; set; }
 
-        [Required]
-        public int UserID { get; set; }
+        public string UserName { get; set; }
         [Required]
         public int PermissionType { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Title { get; set; }
+
+        public string Description { get; set; }
 
         [Required]
         [DataType(DataType.Html)]
