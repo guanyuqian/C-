@@ -99,9 +99,9 @@
                 height: 510
             });
 
-            $('#btn_public').click(setPermissionType(0));
-            $('#btn_friendly').click(setPermissionType(1));
-            $('#btn_private').click(setPermissionType(2));
+            $('#btn_public').click(function () { $('#PermissionType').val(0); });
+            $('#btn_friendly').click(function () { $('#PermissionType').val(1); });
+            $('#btn_private').click(function () { $('#PermissionType').val(2); });
 
             
             $('#Done').click(function () {
@@ -111,9 +111,6 @@
                 return false;
             });
         });
-        function setPermissionType(type) {
-            $('#PermissionType').val(type);
-        }
     </script>
 }
 
