@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -159,9 +160,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BulletinsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NoteController.cs" />
+    <Compile Include="Controllers\recruitBulletinController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -274,6 +277,20 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Note\Index.cshtml" />
     <Content Include="Views\Note\Create.cshtml" />
+    <Content Include="Views\Bulletins\Create.cshtml" />
+    <Content Include="Views\Bulletins\Delete.cshtml" />
+    <Content Include="Views\Bulletins\Details.cshtml" />
+    <Content Include="Views\Bulletins\Edit.cshtml" />
+    <Content Include="Views\Bulletins\Index.cshtml" />
+    <Content Include="Views\Bulletins\Manage.cshtml" />
+    <Content Include="Views\Bulletins\Details2.cshtml" />
+    <Content Include="Views\recruitBulletin\Create.cshtml" />
+    <Content Include="Views\recruitBulletin\Delete.cshtml" />
+    <Content Include="Views\recruitBulletin\Details.cshtml" />
+    <Content Include="Views\recruitBulletin\Edit.cshtml" />
+    <Content Include="Views\recruitBulletin\Index.cshtml" />
+    <Content Include="Views\recruitBulletin\Manage.cshtml" />
+    <Content Include="Views\recruitBulletin\Details2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
