@@ -32,12 +32,33 @@ namespace SocialNoteMark.Controllers
             note.CreatTime = DateTime.Now;
             if (ModelState.IsValid)
             {
-                db.Notes.Add(note);
+                note = db.Notes.Add(note);
                 db.SaveChanges();
+
+                String tagStr = Request.Form["tag"];
+                addTag(note.NoteID, tagStr);
                 return RedirectToAction("Index");
             }
 
             return View(note);
+        }
+
+        private void addTag(int noteId, String tagStr)
+        {
+            if (tagStr == null) return;
+            String[] tags = tagStr.Substring(0,tagStr.Length-1).Split('/');
+            foreach (String name in tags) 
+            {
+                if (db.Tags.Count(u => u.Name == name) == 0)
+                {
+                    db.Tags.Add(new Tag() { Name = name });
+                    db.SaveChanges();
+                }
+                Tag tag = db.Tags.First(u => u.Name == name);
+                NoteTagLog log = new NoteTagLog() { NoteID = noteId, TagID = tag.TagID};
+                db.NoteTagLogs.Add(log);
+                db.SaveChanges();
+            }
         }
     }
 }

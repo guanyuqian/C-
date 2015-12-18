@@ -13,5 +13,6 @@ namespace SocialNoteMark.Models
 
         [Required]
         public string Name { get; set; }
+
     }
 }
