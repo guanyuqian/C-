@@ -1,0 +1,134 @@
+﻿
+@section head{
+    @Styles.Render("~/Content/fileinput.css");
+}
+
+<h2>账户管理</h2>
+<hr />
+<div class="row">
+    <form action="/Manage/uploadPic" method="post" role="form" class="form-horizontal" novalidate="novalidate" enctype="multipart/form-data">
+        <div class="col-md-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">上传头像</h3>
+                </div>
+                <div class="panel-body">
+                    <img src="">
+                    <input id="input-file" type="file" name="file" class="file file-loading" data-show-preview="false">
+                    <input type="submit" style="display: none" />
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="col-md-8">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h3 class="panel-title">个人信息</h3>
+            </div>
+            <div class="panel-body">
+                <form action="/user/resetEmail" method="post" role="form" class="form-horizontal" novalidate="novalidate">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="oldEmail">邮箱地址</label>
+                        <div class="col-md-5">
+                            <input name="oldEmail" class="form-control" id="oldEmail" type="text" value="" disabled="disabled">
+                        </div>
+                        <div class="col-md-3">
+                            @if(ViewBag.User.EmailConfirmed == true){
+                                <span class="glyphicon glyphicon-ok">已确认</span>
+                            }
+                            else { 
+                                <button id="btn_resend" class="btn btn-primary"><span class="glyphicon glyphicon-envelope"></span>重新获取认证邮件</button>
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="newEmail">修改地址</label>
+                        <div class="col-md-5">
+                            <input name="email" class="form-control" id="newEmail" type="text" value="" data-val-required="电子邮件 字段是必需的。" data-val="true" data-val-email="电子邮件 字段不是有效的电子邮件地址。">
+                            <span class="field-validation-valid text-danger" data-valmsg-replace="true" data-valmsg-for="email"></span>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" class="btn btn-primary" value="更新信息">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="username" style="display: none">@ViewBag.User.UserName</div>
+<div id="email" style="display: none">@ViewBag.User.Email</div>
+<div id="emailConfirmed" style="display: none">@ViewBag.User.EmailConfirmed</div>
+<button id="modelTrigger" style="display: none" data-toggle="modal" data-target="#confirmModel"></button>
+
+@section models{
+<div class="modal fade" id="confirmModel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closs" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">邮件确认提醒</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                    <button class="close" aria-label="Close" type="button" data-dismiss="alert"><span aria-hidden="true">×</span></button>
+                    <p>您似乎尚未确认邮箱地址，请尽快确认，已获得更好的服务。</p>
+                    <p>如果地址填写错误，或想更换邮箱，您可以重新指定邮箱地址。</p>
+                </div><!--alert message-->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="Done">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/fileinput.js");
+
+<script>
+  $(document).on('ready', function() {
+       $("#input-file").fileinput({
+         allowedFileExtensions : ['jpg', 'png','gif'],
+         showCaption: false
+       });
+
+      var email = $('#email').html();
+      $('#oldEmail').val(email);
+
+      var emailConfirmed = parseInt($('#emailConfirmed').html());
+      if(emailConfirmed == 0) {
+        $('#modelTrigger').trigger("click");
+      }
+
+      $('#Done').click(function(){ $('#closs').trigger("click")});
+
+      var name = $('#username').html();
+      $('#btn_resend').click(function(){
+        $(this).html("<span class=\"glyphicon glyphicon-time\"></span>还剩<span id=time>0</span>秒可重新获取");
+        $(this).attr("disabled","disabled");
+        timedCount();
+        $.ajax({
+          type: "POST",
+          url: "/user/resendEmail",
+          data: {"name":name},
+          dataType:"json",
+          success: function(data){
+        }});
+      });
+    });
+  function timedCount()
+  {
+    c = parseInt($('#time').html());
+    if (c == 5) {
+      $('#btn_resend').html("<span class=\"glyphicon glyphicon-envelope\"></span>重新获取认证邮件");
+      $('#btn_resend').removeAttr("disabled");
+      return;
+    }
+    c = c + 1;
+    $('#time').html(c);
+    t = setTimeout("timedCount()",1000)
+  }
+</script>
+}

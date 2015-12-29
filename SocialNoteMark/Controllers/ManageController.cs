@@ -106,6 +106,13 @@ namespace SocialNoteMark.Controllers
             return View();
         }
 
+        public ActionResult UserManagement()
+        {
+            var user = UserManager.FindByName(User.Identity.Name);
+            ViewBag.User = user;
+            return View();
+        }
+
         //
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
