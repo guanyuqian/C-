@@ -15,6 +15,11 @@ namespace SocialNoteMark.Controllers
         // GET: Note
         public ActionResult Index()
         {
+            var UserName = User.Identity.Name; 
+            ViewBag.publicList = db.Notes.Where(u => u.UserName == UserName).Where(u => u.PermissionType == 0).ToList();
+            ViewBag.friendlyList = db.Notes.Where(u => u.UserName == UserName).Where(u => u.PermissionType == 1).ToList();
+            ViewBag.privateList = db.Notes.Where(u => u.UserName == UserName).Where(u => u.PermissionType == 2).ToList();
+
             return View(db.Notes.ToList());
         }
 
