@@ -26,6 +26,9 @@ namespace SocialNoteMark
             bundles.Add(new ScriptBundle("~/bundles/summernote").Include(
                       "~/Scripts/summernote.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fileinput").Include(
+                      "~/Scripts/fileinput.js"));
+
             bundles.Add(new StyleBundle("~/Content/summernote").Include(
                       //"~/Content/font-awesome.css",
                       "~/Content/summernote-bs3.css"));
@@ -33,6 +36,10 @@ namespace SocialNoteMark
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/fileinput").Include(
+                //"~/Content/font-awesome.css",
+                      "~/Content/fileinput.css"));
         }
     }
 }
