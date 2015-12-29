@@ -23,6 +23,13 @@ namespace SocialNoteMark.Controllers
             return View(db.Notes.ToList());
         }
 
+        public ActionResult History()
+        {
+            var UserName = User.Identity.Name;
+            ViewBag.noteList = db.Notes.Where(u => u.UserName == UserName).OrderByDescending(u => u.CreatTime).ToList();
+            return View(db.Notes.Where(u => u.UserName == UserName).OrderByDescending(u => u.CreatTime).ToList());
+        }
+
 
         public ActionResult Create()
         {

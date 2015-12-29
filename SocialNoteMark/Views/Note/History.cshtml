@@ -1,0 +1,30 @@
+﻿@model IEnumerable<SocialNoteMark.Models.Note>
+
+@{
+    ViewBag.Title = "历史视图";
+}
+
+@if(ViewBag.noteList.Count == 0){
+    <h2>未有任何历史记录</h2>
+    <hr />
+}
+else {
+    <h2>笔记历史记录</h2>
+    <hr />
+    foreach (var note in Model) { 
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <!-- panel-heading -->
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#publicAccordion">
+                        @note.Title
+                    </a>
+                </h4>
+            </div>
+            <!-- panel body -->
+            <div class="panel-body">
+                @Html.Raw(note.Content)
+            </div>
+        </div>
+    }
+}
