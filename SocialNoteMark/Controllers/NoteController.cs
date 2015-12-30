@@ -20,6 +20,9 @@ namespace SocialNoteMark.Controllers
             ViewBag.friendlyList = db.Notes.Where(u => u.UserName == UserName).Where(u => u.PermissionType == 1).ToList();
             ViewBag.privateList = db.Notes.Where(u => u.UserName == UserName).Where(u => u.PermissionType == 2).ToList();
 
+            var userInfo = db.UserInfoes.First(u => u.UserName == User.Identity.Name);
+            ViewBag.ImageUrl = userInfo.ImageUrl;
+
             return View(db.Notes.ToList());
         }
 
