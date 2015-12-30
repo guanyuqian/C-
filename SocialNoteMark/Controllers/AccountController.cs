@@ -165,7 +165,7 @@ namespace SocialNoteMark.Controllers
                      await UserManager.SendEmailAsync(user.Id, "确认你的帐户", "请通过单击 <a href=\"" + callbackUrl + "\">這裏</a>来确认你的帐户");
 
                     //Create UserInfo
-                    var userInfo = new UserInfo { UserName = model.UserName, Age = 0 };
+                     var userInfo = new UserInfo { UserName = model.UserName, Age = 0, ImageUrl = "/Uploads/avatar/default.jpg" };
                     db.UserInfoes.Add(userInfo);
                     db.SaveChanges();
 
