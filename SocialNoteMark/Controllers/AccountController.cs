@@ -17,6 +17,7 @@ namespace SocialNoteMark.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = ApplicationDbContext.Create();
 
         public AccountController()
         {
@@ -162,6 +163,11 @@ namespace SocialNoteMark.Controllers
                      string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                      var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                      await UserManager.SendEmailAsync(user.Id, "确认你的帐户", "请通过单击 <a href=\"" + callbackUrl + "\">這裏</a>来确认你的帐户");
+
+                    //Create UserInfo
+                    var userInfo = new UserInfo { UserName = model.UserName, Age = 0 };
+                    db.UserInfoes.Add(userInfo);
+                    db.SaveChanges();
 
                     return RedirectToAction("Index", "Home");
                 }

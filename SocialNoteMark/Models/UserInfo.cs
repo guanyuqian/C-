@@ -11,6 +11,7 @@ namespace SocialNoteMark.Models
         [Key]
         public int UserInfoID { get; set; }
 
+        [Required]
         public string UserName { get; set; }
         public string RealName { get; set; }
         public string Sex { get; set; }
