@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -15,6 +17,7 @@ namespace SocialNoteMark.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = ApplicationDbContext.Create();
 
         public ManageController()
         {
@@ -109,8 +112,27 @@ namespace SocialNoteMark.Controllers
         public ActionResult UserManagement()
         {
             var user = UserManager.FindByName(User.Identity.Name);
+            var userInfo = db.UserInfoes.First(u => u.UserName == User.Identity.Name);
             ViewBag.User = user;
+            ViewBag.ImageUrl = userInfo.ImageUrl;
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult UploadPic()
+        {
+            HttpPostedFileBase file = Request.Files["file"];
+            if (file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Uploads/avatar"), fileName);
+                file.SaveAs(path);
+
+                var userInfo = db.UserInfoes.First(u => u.UserName == User.Identity.Name);
+                userInfo.ImageUrl = "/Uploads/avatar/" + fileName;
+                db.SaveChanges();
+            }
+            return RedirectToAction("UserManagement");
         }
 
         //

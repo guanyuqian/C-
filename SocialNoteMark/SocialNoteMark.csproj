@@ -201,6 +201,14 @@
     <Compile Include="Migrations\201512101538370_AllowUserNameNull.Designer.cs">
       <DependentUpon>201512101538370_AllowUserNameNull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512300634173_AddUserInfo.cs" />
+    <Compile Include="Migrations\201512300634173_AddUserInfo.Designer.cs">
+      <DependentUpon>201512300634173_AddUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512300647190_AllowUserInfoFieldNULL.cs" />
+    <Compile Include="Migrations\201512300647190_AllowUserInfoFieldNULL.Designer.cs">
+      <DependentUpon>201512300647190_AllowUserInfoFieldNULL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bulletin.cs" />
@@ -210,6 +218,7 @@
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\NoteTagLog.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\UserTagLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -281,6 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\avatar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -316,6 +326,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512101538370_AllowUserNameNull.resx">
       <DependentUpon>201512101538370_AllowUserNameNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512300634173_AddUserInfo.resx">
+      <DependentUpon>201512300634173_AddUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512300647190_AllowUserInfoFieldNULL.resx">
+      <DependentUpon>201512300647190_AllowUserInfoFieldNULL.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
