@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "浏览笔记";
+}
+<h2>浏览笔记</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="panel panel-danger" style="height:580px;">
+            <div class="panel-heading">
+                <!-- panel-heading -->
+                <h4 class="panel-title">
+                    @ViewBag.Note.Title
+                </h4>
+            </div>
+            <div class="panel-body">
+                <!-- panel body -->
+                @ViewBag.Note.Content
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div>
+            <div class="panel panel-danger" style="height:150px;">
+                <div class="panel-heading">
+                    <!-- panel-heading -->
+                    <h4 class="panel-title">
+                        作者信息
+                        @if (ViewBag.FriendRelation == "Stranger")
+                        {
+                            <button id="btn_submit" class="btn btn-primary btn-xs" style="float: right">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                添加好友
+                            </button>
+                        }
+                        else if (ViewBag.FriendRelation == "Friend")
+                        {
+                            <button class="btn btn-primary btn-xs" style="float: right">已为好友</button>
+                        }
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <!-- panel body -->
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img src="@ViewBag.ImageUrl" height="80px" width="80px">
+                        </div>
+                        <div class="col-md-7">
+                            <p>用户名：@ViewBag.User.UserName</p>
+                            <p>邮箱：@ViewBag.User.Email</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="panel panel-danger" style="height:410px;">
+                <div class="panel-heading">
+                    <!-- panel-heading -->
+                        @if (ViewBag.FriendRelation == "Self")
+                        {
+                            <h4 class="panel-title">
+                                我的其他公开笔记
+                            </h4>
+                        }
+                        else
+                        {
+                            <h4 class="panel-title">
+                                该作者的其他公开笔记
+                            </h4>
+                        }
+
+                </div>
+                <div class="panel-body">
+                    <!-- panel body -->
+                    @if (ViewBag.NoteList != null) {
+                        foreach (var note in ViewBag.NoteList) {
+                            <p><a href="/note/show/@note.NoteID">@note.Title</a></p>
+                        }
+                    }
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    <div style="display: none">
+        <form:form action="/Friend/CreatePost" method="post" commandname="friend" role="form">
+            <input name="toName" class="form-control" type="text">
+            <input type="submit" id="submit">
+        </form:form>
+    </div>
+<script>
+  $(document).ready(function () {
+    $("#btn_submit").click(function () {
+      $("#submit").trigger("click");
+    });
+  });
+</script>

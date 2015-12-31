@@ -33,6 +33,33 @@ namespace SocialNoteMark.Controllers
             return View(db.Notes.Where(u => u.UserName == UserName).OrderByDescending(u => u.CreatTime).ToList());
         }
 
+        [Route("[action]/{id:int}")]
+        public ActionResult show(int id)
+        {
+            var note = db.Notes.Find(id);
+            ViewBag.Note = note;
+            var user = db.Users.First(u =>u.UserName == note.UserName);
+            ViewBag.User = user;
+            ViewBag.NoteList = db.Notes.Where(u => u.UserName == note.UserName).Where(u => u.NoteID != id).ToList();
+            var userInfo = db.UserInfoes.First(u => u.UserName == User.Identity.Name);
+            ViewBag.ImageUrl = userInfo.ImageUrl;
+            List<FriendRelation> fdList = db.FriendRelations.Where(u => u.FromName == User.Identity.Name).Where(u => u.ToName == note.UserName).ToList();
+            String RelationStatus = "";
+            if (fdList.Count != 0)
+            {
+                RelationStatus = "Friend";
+            }
+            else if (note.UserName == User.Identity.Name)
+            {
+                RelationStatus = "Self";
+            }
+            else
+            {
+                RelationStatus = "Stranger";
+            }
+            ViewBag.FriendRelation = RelationStatus;
+            return View();
+        }
 
         public ActionResult Create()
         {
