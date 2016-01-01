@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "网盘管理";
+}
+
+@section head{
+    @Styles.Render("~/Content/fileinput.css")
+}
+<h2>文件管理</h2>
+<hr />
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#file_modal">
+    上传文件
+</button>
+
+<form action="/Manage/UploadFile" method="post" role="form" class="form-horizontal" novalidate="novalidate" enctype="multipart/form-data">
+    <!-- Modal -->
+    <div class="modal fade" id="file_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">选择上传文件</h4>
+                </div>
+                <div class="modal-body">
+
+                    <input id="input-file" type="file" name="files" multiple class="file-loading">
+                    <input type="submit" style="display: none" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/fileinput.js")
+<script>
+  $(document).on('ready', function() {
+    $("#input-file").fileinput({
+      showPreview:true,
+      showCaption:true,
+      dropZoneEnabled:true,
+      enctype: 'multipart/form-data',
+      browseLabel : "浏览",
+      removeLabel : "删除",
+      uploadLabel : "上传",
+    });
+    //allowedFileExtensions: ['jpg', 'png', 'gif'],
+    //showCaption: false
+  });
+</script>
+}

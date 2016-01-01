@@ -164,6 +164,30 @@ namespace SocialNoteMark.Controllers
             return RedirectToAction("UserManagement");
         }
 
+
+        public ActionResult FileManagement()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UploadFile(){
+            String UserName = User.Identity.Name;
+            var userPath = Server.MapPath("~/Uploads/" + UserName + "/");
+            if (!Directory.Exists(userPath))
+                Directory.CreateDirectory(userPath);
+            for (int i = 0; i < Request.Files.Count; i++ )
+            {
+                HttpPostedFileBase file = Request.Files[i];
+                if (file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Uploads/" + UserName + "/"), fileName);
+                    file.SaveAs(path);
+                }
+            }
+            return RedirectToAction("FileManagement");
+        }
         //
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
