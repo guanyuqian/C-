@@ -119,6 +119,35 @@ namespace SocialNoteMark.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
+        public async Task<ActionResult> ResendEmail()
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            user.EmailConfirmed = false;
+            db.SaveChanges();
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            await UserManager.SendEmailAsync(user.Id, "确认你的帐户", "请通过单击 <a href=\"" + callbackUrl + "\">這裏</a>来确认你的帐户");
+            return RedirectToAction("UserManagement");
+        }
+
+        public async Task<ActionResult> ResetEmail()
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            String email = Request.Params["email"];
+            if (email != null && email != "")
+            {
+                user.Email = email;
+                user.EmailConfirmed = false;
+                db.SaveChanges();
+                string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "确认你的帐户", "请通过单击 <a href=\"" + callbackUrl + "\">這裏</a>来确认你的帐户");
+            }
+            return RedirectToAction("UserManagement");
+        }
+
+        [HttpPost]
         public ActionResult UploadPic()
         {
             HttpPostedFileBase file = Request.Files["file"];

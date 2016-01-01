@@ -26,7 +26,7 @@
                 <h3 class="panel-title">个人信息</h3>
             </div>
             <div class="panel-body">
-                <form action="/user/resetEmail" method="post" role="form" class="form-horizontal" novalidate="novalidate">
+                <form action="/Manage/ResetEmail" method="post" role="form" class="form-horizontal" novalidate="novalidate">
                     <div class="form-group">
                         <label class="col-md-2 control-label" for="oldEmail">邮箱地址</label>
                         <div class="col-md-5">
@@ -36,8 +36,9 @@
                             @if(ViewBag.User.EmailConfirmed == true){
                                 <span class="glyphicon glyphicon-ok">已确认</span>
                             }
-                            else { 
-                                <button id="btn_resend" class="btn btn-primary"><span class="glyphicon glyphicon-envelope"></span>重新获取认证邮件</button>
+                            else
+                            {
+                                <button id="btn_resend" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-envelope"></span>重新获取认证邮件</button>
                             }
                         </div>
                     </div>
@@ -111,7 +112,7 @@
         timedCount();
         $.ajax({
           type: "POST",
-          url: "/user/resendEmail",
+          url: "/Manage/ResendEmail",
           data: {"name":name},
           dataType:"json",
           success: function(data){
