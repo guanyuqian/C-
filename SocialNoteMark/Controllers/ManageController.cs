@@ -229,6 +229,16 @@ namespace SocialNoteMark.Controllers
             }
             return RedirectToAction("FileManagement");
         }
+
+        [HttpPost]
+        public ActionResult DeleteFile()
+        {
+            String UserName = User.Identity.Name;
+            var userPath = Server.MapPath("~/Uploads/" + UserName + "/");
+            var path = userPath + Request.Params["fileName"];
+            System.IO.File.Delete(path);
+            return RedirectToAction("FileManagement");
+        }
         //
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
