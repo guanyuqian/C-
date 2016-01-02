@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -167,6 +168,46 @@ namespace SocialNoteMark.Controllers
 
         public ActionResult FileManagement()
         {
+            List<String> fileNameList = new List<String>();
+            List<String> imageUrlList = new List<String>();
+
+            String UserName = User.Identity.Name;
+            var userPath = Server.MapPath("~/Uploads/" + UserName + "/");
+            if (!Directory.Exists(userPath))
+                Directory.CreateDirectory(userPath);
+            String[] files = Directory.GetFiles(userPath);
+            foreach (var name in files)
+            {
+                String fileName = Path.GetFileName(name);
+                String suffix = fileName.Substring(fileName.LastIndexOf('.')+1);
+                String imageUrl = "/icons/";
+                if (suffix == "doc" || suffix == "docx")
+                    imageUrl += "word.jpg";
+                else if (suffix == "xls")
+                    imageUrl += "excel.jpg";
+                else if (suffix == "java" || suffix == "jar")
+                    imageUrl += "java.jpg";
+                else if (suffix == "html")
+                    imageUrl += "html.jpg";
+                else if (suffix == "ppt" || suffix == "pptx")
+                    imageUrl += "ppt.jpg";
+                else if (suffix == "py")
+                    imageUrl += "py.jpg";
+                else if (suffix == "zip")
+                    imageUrl += "zip.jpg";
+                else if (suffix == "rar")
+                    imageUrl += "rar.jpg";
+                else if (suffix == "mp3")
+                    imageUrl += "mp3.jpg";
+                else if (suffix == "jpg" || suffix =="png" || suffix == "gif")
+                    imageUrl += "image.jpg";
+                else
+                    imageUrl += "file.jpg";
+                fileNameList.Add(fileName);
+                imageUrlList.Add(imageUrl);
+            }
+            ViewBag.fileNameList = fileNameList;
+            ViewBag.imageUrlList = imageUrlList;
             return View();
         }
 
