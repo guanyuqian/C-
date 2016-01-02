@@ -239,6 +239,15 @@ namespace SocialNoteMark.Controllers
             System.IO.File.Delete(path);
             return RedirectToAction("FileManagement");
         }
+
+        [HttpPost]
+        public ActionResult DownLoadFile()
+        {
+            String UserName = User.Identity.Name;
+            var userPath = Server.MapPath("~/Uploads/" + UserName + "/");
+            var path = userPath + Request.Params["fileName"];
+            return File(path, "application/octet-stream", Request.Params["fileName"]);
+        }
         //
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
