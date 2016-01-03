@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "好友管理";
+}
+
+<h2>好友管理</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="panel panel-danger" style="height:580px;">
+            <div class="panel-heading">
+                <!-- panel-heading -->
+                <h4 class="panel-title">
+                    好友动态
+                </h4>
+            </div>
+            <div class="panel-body">
+                <!-- panel body -->
+                等待实现
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div>
+            <div class="panel panel-danger" style="height:100px;">
+                <div class="panel-heading">
+                    <!-- panel-heading -->
+                    <h4 class="panel-title">
+                        添加好友
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <!-- panel body -->
+                    <form action="/Friend/Create" method="post" commandname="friend" role="form">
+                        <div class="col-md-8" style="padding-left: 0px;padding-right: 0px;">
+                            <input name="toName" class="form-control" type="text" style="padding-left: 2px;padding-right: 2px;">
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-primary" id="btn_submit">添加</button>
+                        </div>
+                        <input type="submit" id="submit" style="display: none">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="panel panel-danger" style="height:460px;">
+                <div class="panel-heading">
+                    <!-- panel-heading -->
+                    <h4 class="panel-title">
+                        好友列表
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <!-- panel body -->
+                    @if (ViewBag.NameList.Count != 0)
+                    {
+                        for(int i = 0; i < ViewBag.NameList.Count; i++){
+                            <p>
+                                <img src="@ViewBag.ImageUrlList[i]" height="40px" width="40px">
+                                @ViewBag.NameList[i]
+                                <button type="button" class="btn" style="float:right" data-toggle="tooltip" data-placement="top" title="${user.email}"><span class="glyphicon glyphicon-envelope"></span></button>
+                            </p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $("#btn_submit").click(function () {
+      $("#submit").trigger("click");
+    });
+  });
+</script>
