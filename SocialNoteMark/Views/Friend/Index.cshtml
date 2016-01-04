@@ -27,16 +27,23 @@
                     <!-- panel-heading -->
                     <h4 class="panel-title">
                         添加好友
+                        <button type="button" class="btn btn-primary btn-xs" style="float: right;" data-toggle="modal" data-target="#request_modal">
+                            好友申请
+                            <span id="request_badge"class="badge">
+                                    @ViewBag.requestList.Count
+                            </span>
+                        </button>
                     </h4>
+
                 </div>
                 <div class="panel-body">
                     <!-- panel body -->
-                    <form action="/Friend/Create" method="post" commandname="friend" role="form">
+                    <form action="/Friend/CreateRequest" method="post" commandname="friend" role="form">
                         <div class="col-md-8" style="padding-left: 0px;padding-right: 0px;">
                             <input name="toName" class="form-control" type="text" style="padding-left: 2px;padding-right: 2px;">
                         </div>
                         <div class="col-md-4">
-                            <button class="btn btn-primary" id="btn_submit">添加</button>
+                            <button class="btn btn-primary" type="button" id="btn_submit">添加</button>
                         </div>
                         <input type="submit" id="submit" style="display: none">
                     </form>
@@ -56,7 +63,8 @@
                     <!-- panel body -->
                     @if (ViewBag.NameList.Count != 0)
                     {
-                        for(int i = 0; i < ViewBag.NameList.Count; i++){
+                        for (int i = 0; i < ViewBag.NameList.Count; i++)
+                        {
                             <p>
                                 <img src="@ViewBag.ImageUrlList[i]" height="40px" width="40px">
                                 @ViewBag.NameList[i]
@@ -69,12 +77,78 @@
         </div>
     </div>
 </div>
-<script>
-  $(document).ready(function () {
-    $('[data-toggle="tooltip"]').tooltip();
 
-    $("#btn_submit").click(function () {
-      $("#submit").trigger("click");
-    });
-  });
-</script>
+@section models{
+    <div class="modal fade" id="request_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">好友申请</h4>
+                </div>
+                <div class="modal-body">
+                    @if (ViewBag.requestList.Count != 0)
+                    {
+                        foreach (var request in ViewBag.requestList)
+                        {
+                            <p>
+                                来自 @request.FromName 的好友申请
+                                <button class="btn btn-primary accept" requestId="@request.FriendRequestID">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                    同意
+                                </button>
+                                <button class="btn btn-primary reject" requestid="@request.FriendRequestID">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                    拒绝
+                                </button>
+                            </p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $("#btn_submit").click(function () {
+                $("#submit").trigger("click");
+            });
+
+            $('#close').click(function () { window.location.reload();});
+
+            $('.accept').click(function () {
+                var id = $(this).attr("requestId");
+                $.ajax({
+                    type: "POST",
+                    url: "/Friend/AcceptRequest",
+                    data: { "id": id },
+                    dataType: "json",
+                    success: function (data) {
+                    }
+                });
+                $(this).parent().remove();
+                var requestNum = parseInt($("#request_badge").html());
+                $("#request_badge").html(requestNum - 1);
+            });
+            $('.reject').click(function () {
+                var id = $(this).attr("requestId");
+                $.ajax({
+                    type: "POST",
+                    url: "/Friend/RejectRequest",
+                    data: { "id": id },
+                    dataType: "json",
+                    success: function (data) {
+                    }
+                });
+                $(this).parent().remove();
+                var requestNum = parseInt($("#request_badge").html());
+                $("#request_badge").html(requestNum - 1);
+            });
+        });
+    </script>
+}

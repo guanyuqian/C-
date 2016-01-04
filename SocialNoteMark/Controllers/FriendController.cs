@@ -16,9 +16,11 @@ namespace SocialNoteMark.Controllers
         // GET: Friend
         public ActionResult Index()
         {
-            List<FriendRelation> friendList = db.FriendRelations.Where(u => u.FromName == User.Identity.Name).ToList();
             var nameList = new List<String>();
             var imageUrlList = new List<String>();
+            var requestList = new List<FriendRequest>();
+
+            List<FriendRelation> friendList = db.FriendRelations.Where(u => u.FromName == User.Identity.Name).ToList();
             foreach (var fd in friendList)
             {
                 var friendName = fd.ToName;
@@ -26,8 +28,11 @@ namespace SocialNoteMark.Controllers
                 nameList.Add(friendName);
                 imageUrlList.Add(userInfo.ImageUrl);
             }
+            requestList = db.FriendRequests.Where(u => u.ToName == User.Identity.Name).ToList();
+
             ViewBag.NameList = nameList;
             ViewBag.ImageUrlList = imageUrlList;
+            ViewBag.RequestList = requestList;
             return View();
         }
 
@@ -40,6 +45,43 @@ namespace SocialNoteMark.Controllers
             db.FriendRelations.Add(new FriendRelation { FromName = toName, ToName = fromName });
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult CreateRequest()
+        {
+            String fromName = User.Identity.Name;
+            String toName = Request.Params["toName"];
+            if(toName != null && toName != ""){
+                db.FriendRequests.Add(new FriendRequest { FromName = fromName, ToName = toName });
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult AcceptRequest()
+        {
+            int requestId = Convert.ToInt32(Request.Params["id"]);
+            FriendRequest fq = db.FriendRequests.Find(requestId);
+
+            String fromName = fq.FromName;
+            String toName = fq.ToName;
+            db.FriendRelations.Add(new FriendRelation { FromName = fromName, ToName = toName });
+            db.FriendRelations.Add(new FriendRelation { FromName = toName, ToName = fromName });
+            db.FriendRequests.Remove(fq);
+            db.SaveChanges();
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult RejectRequest()
+        {
+            int requestId = Convert.ToInt32(Request.Params["id"]);
+            FriendRequest fq = db.FriendRequests.Find(requestId);
+            db.FriendRequests.Remove(fq);
+            db.SaveChanges();
+            return null;
         }
     }
 }

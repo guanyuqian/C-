@@ -10,7 +10,9 @@ namespace SocialNoteMark.Models
     {
         [Key]
         public int FriendRequestID { get; set; }
+        [Required]
         public string FromName { get; set; }
+        [Required]
         public string ToName { get; set; }
     }
 }

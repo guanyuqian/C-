@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201601040125165_AddFriendRequest.Designer.cs">
       <DependentUpon>201601040125165_AddFriendRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601040151050_FixFriendRequest.cs" />
+    <Compile Include="Migrations\201601040151050_FixFriendRequest.Designer.cs">
+      <DependentUpon>201601040151050_FixFriendRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bulletin.cs" />
@@ -361,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601040125165_AddFriendRequest.resx">
       <DependentUpon>201601040125165_AddFriendRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601040151050_FixFriendRequest.resx">
+      <DependentUpon>201601040151050_FixFriendRequest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
