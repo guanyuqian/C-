@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NoteController.cs" />
@@ -209,10 +210,19 @@
     <Compile Include="Migrations\201512300647190_AllowUserInfoFieldNULL.Designer.cs">
       <DependentUpon>201512300647190_AllowUserInfoFieldNULL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512310759184_FixFriendrelation.cs" />
+    <Compile Include="Migrations\201512310759184_FixFriendrelation.Designer.cs">
+      <DependentUpon>201512310759184_FixFriendrelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601040125165_AddFriendRequest.cs" />
+    <Compile Include="Migrations\201601040125165_AddFriendRequest.Designer.cs">
+      <DependentUpon>201601040125165_AddFriendRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bulletin.cs" />
     <Compile Include="Models\FriendRelation.cs" />
+    <Compile Include="Models\FriendRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Note.cs" />
@@ -232,6 +242,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="icons\excel.jpg" />
+    <Content Include="icons\file.jpg" />
+    <Content Include="icons\html.jpg" />
+    <Content Include="icons\image.jpg" />
+    <Content Include="icons\java.jpg" />
+    <Content Include="icons\ppt.jpg" />
+    <Content Include="icons\py.jpg" />
+    <Content Include="icons\rar.jpg" />
+    <Content Include="icons\word.jpg" />
+    <Content Include="icons\zip.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -287,6 +307,9 @@
     <Content Include="Views\Note\Create.cshtml" />
     <Content Include="Views\Note\History.cshtml" />
     <Content Include="Views\Manage\UserManagement.cshtml" />
+    <Content Include="Views\Note\show.cshtml" />
+    <Content Include="Views\Manage\FileManagement.cshtml" />
+    <Content Include="Views\Friend\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -332,6 +355,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512300647190_AllowUserInfoFieldNULL.resx">
       <DependentUpon>201512300647190_AllowUserInfoFieldNULL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512310759184_FixFriendrelation.resx">
+      <DependentUpon>201512310759184_FixFriendrelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601040125165_AddFriendRequest.resx">
+      <DependentUpon>201601040125165_AddFriendRequest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

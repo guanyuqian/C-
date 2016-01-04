@@ -37,5 +37,7 @@ namespace SocialNoteMark.Models
         public System.Data.Entity.DbSet<SocialNoteMark.Models.Bulletin> Bulletins { get; set; }
         public System.Data.Entity.DbSet<SocialNoteMark.Models.FriendRelation> FriendRelations { get; set; }
         public System.Data.Entity.DbSet<SocialNoteMark.Models.UserInfo> UserInfoes { get; set; }
+        public System.Data.Entity.DbSet<SocialNoteMark.Models.FriendRequest> FriendRequests { get; set; }
+
     }
 }
