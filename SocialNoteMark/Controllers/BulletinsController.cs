@@ -81,7 +81,7 @@ namespace SocialNoteMark.Controllers
                //bulletin.UserName=Session.GetEnumerator
                 db.Bulletins.Add(bulletin);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(Request.Form["nextPage"]);
             }
 
             return View(bulletin);
