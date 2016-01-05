@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -159,71 +160,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnswersController.cs" />
     <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NoteController.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201512091117472_AddNote.cs" />
-    <Compile Include="Migrations\201512091117472_AddNote.Designer.cs">
-      <DependentUpon>201512091117472_AddNote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512091122260_AddTag.cs" />
-    <Compile Include="Migrations\201512091122260_AddTag.Designer.cs">
-      <DependentUpon>201512091122260_AddTag.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512091129561_AddUserTagLog.cs" />
-    <Compile Include="Migrations\201512091129561_AddUserTagLog.Designer.cs">
-      <DependentUpon>201512091129561_AddUserTagLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512091132308_AddNoteTagLog.cs" />
-    <Compile Include="Migrations\201512091132308_AddNoteTagLog.Designer.cs">
-      <DependentUpon>201512091132308_AddNoteTagLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512091146015_AddBulletin.cs" />
-    <Compile Include="Migrations\201512091146015_AddBulletin.Designer.cs">
-      <DependentUpon>201512091146015_AddBulletin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512091149360_AddFriendRelation.cs" />
-    <Compile Include="Migrations\201512091149360_AddFriendRelation.Designer.cs">
-      <DependentUpon>201512091149360_AddFriendRelation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512101242154_AddNoteDescriptionChangeNameToTitle.cs" />
-    <Compile Include="Migrations\201512101242154_AddNoteDescriptionChangeNameToTitle.Designer.cs">
-      <DependentUpon>201512101242154_AddNoteDescriptionChangeNameToTitle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512101524448_ChangeUserIDtoUserName.cs" />
-    <Compile Include="Migrations\201512101524448_ChangeUserIDtoUserName.Designer.cs">
-      <DependentUpon>201512101524448_ChangeUserIDtoUserName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512101538370_AllowUserNameNull.cs" />
-    <Compile Include="Migrations\201512101538370_AllowUserNameNull.Designer.cs">
-      <DependentUpon>201512101538370_AllowUserNameNull.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512300634173_AddUserInfo.cs" />
-    <Compile Include="Migrations\201512300634173_AddUserInfo.Designer.cs">
-      <DependentUpon>201512300634173_AddUserInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512300647190_AllowUserInfoFieldNULL.cs" />
-    <Compile Include="Migrations\201512300647190_AllowUserInfoFieldNULL.Designer.cs">
-      <DependentUpon>201512300647190_AllowUserInfoFieldNULL.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512310759184_FixFriendrelation.cs" />
-    <Compile Include="Migrations\201512310759184_FixFriendrelation.Designer.cs">
-      <DependentUpon>201512310759184_FixFriendrelation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601040125165_AddFriendRequest.cs" />
-    <Compile Include="Migrations\201601040125165_AddFriendRequest.Designer.cs">
-      <DependentUpon>201601040125165_AddFriendRequest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601040151050_FixFriendRequest.cs" />
-    <Compile Include="Migrations\201601040151050_FixFriendRequest.Designer.cs">
-      <DependentUpon>201601040151050_FixFriendRequest.cs</DependentUpon>
+    <Compile Include="Migrations\201601050938033_wahtever.cs" />
+    <Compile Include="Migrations\201601050938033_wahtever.Designer.cs">
+      <DependentUpon>201601050938033_wahtever.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\Bulletin.cs" />
     <Compile Include="Models\FriendRelation.cs" />
     <Compile Include="Models\FriendRequest.cs" />
@@ -231,6 +183,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\NoteTagLog.cs" />
+    <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\UserTagLog.cs" />
@@ -314,6 +267,20 @@
     <Content Include="Views\Note\show.cshtml" />
     <Content Include="Views\Manage\FileManagement.cshtml" />
     <Content Include="Views\Friend\Index.cshtml" />
+    <Content Include="Views\Answers\Create.cshtml" />
+    <Content Include="Views\Answers\Delete.cshtml" />
+    <Content Include="Views\Answers\Details.cshtml" />
+    <Content Include="Views\Answers\Edit.cshtml" />
+    <Content Include="Views\Answers\Index.cshtml" />
+    <Content Include="Views\Questions\AnswerResult.cshtml" />
+    <Content Include="Views\Questions\AnswerThisQuestion.cshtml" />
+    <Content Include="Views\Questions\Create.cshtml" />
+    <Content Include="Views\Questions\Delete.cshtml" />
+    <Content Include="Views\Questions\Details.cshtml" />
+    <Content Include="Views\Questions\Edit.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\Questions\Search.cshtml" />
+    <Content Include="Views\Questions\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -327,47 +294,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512091117472_AddNote.resx">
-      <DependentUpon>201512091117472_AddNote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512091122260_AddTag.resx">
-      <DependentUpon>201512091122260_AddTag.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512091129561_AddUserTagLog.resx">
-      <DependentUpon>201512091129561_AddUserTagLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512091132308_AddNoteTagLog.resx">
-      <DependentUpon>201512091132308_AddNoteTagLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512091146015_AddBulletin.resx">
-      <DependentUpon>201512091146015_AddBulletin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512091149360_AddFriendRelation.resx">
-      <DependentUpon>201512091149360_AddFriendRelation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512101242154_AddNoteDescriptionChangeNameToTitle.resx">
-      <DependentUpon>201512101242154_AddNoteDescriptionChangeNameToTitle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512101524448_ChangeUserIDtoUserName.resx">
-      <DependentUpon>201512101524448_ChangeUserIDtoUserName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512101538370_AllowUserNameNull.resx">
-      <DependentUpon>201512101538370_AllowUserNameNull.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512300634173_AddUserInfo.resx">
-      <DependentUpon>201512300634173_AddUserInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512300647190_AllowUserInfoFieldNULL.resx">
-      <DependentUpon>201512300647190_AllowUserInfoFieldNULL.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512310759184_FixFriendrelation.resx">
-      <DependentUpon>201512310759184_FixFriendrelation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601040125165_AddFriendRequest.resx">
-      <DependentUpon>201601040125165_AddFriendRequest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601040151050_FixFriendRequest.resx">
-      <DependentUpon>201601040151050_FixFriendRequest.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601050938033_wahtever.resx">
+      <DependentUpon>201601050938033_wahtever.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

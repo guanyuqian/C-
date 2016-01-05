@@ -7,13 +7,13 @@ namespace SocialNoteMark.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddTag : IMigrationMetadata
+    public sealed partial class wahtever : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTag));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(wahtever));
         
         string IMigrationMetadata.Id
         {
-            get { return "201512091122260_AddTag"; }
+            get { return "201601050938033_wahtever"; }
         }
         
         string IMigrationMetadata.Source
