@@ -2,30 +2,121 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Social Note Mark with MVC</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@model IEnumerable<SocialNoteMark.Models.Bulletin>
+<link href="../Content/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Content/style.css" rel="stylesheet" type="text/css" media="all" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href='http://fonts.useso.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet' type='text/css'>
+<script src="../Scripts/jquery.min.js"></script>
+<div class="container">
+    <div class="header">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+        <div class="clearfix"> </div>
+        <!-- script-for-nav -->
+        <script>
+            $("span.menu").click(function () {
+                $(".head-nav ul").slideToggle(300, function () {
+                    // Animation complete.
+                });
+            });
+        </script>
+        <!-- script-for-nav -->
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</div>
+<div class="banner">
+    <div class="container">
+        <div class="banner-info">
+            <h1>Welcome To SocialNoteMark</h1>
+            <div class="col-md-2 lente"> </div>
+        
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</div>
+<!-- header -->
+
+<div class="container">
+    <div class="content-top">
+        <div class="content">
+            <div class="col-md-3 lente">
+                <h4>招募信息</h4>
+                <h6>这里都是最新的招募信息，程序猿们可以于此选择自己心仪的工作。</h6>
+                <ul>
+                    <li><a href="#"><span> </span>Nam at urna quis lacus utre </a></li>
+                    <li><a href="#"><span> </span>Posuere justo velitet laotinoc </a></li>
+                    <li><a href="#"><span> </span>Donec egestas diam sed odioti</a></li>
+                    <li><a href="#"><span> </span>Integer eu nibh vitae massa</a></li>
+                    <li><a href="#"><span> </span>Cras vehicula nunc sed umb</a></li>
+                    <li><a href="#"><span> </span>Quisque non risus dui, vel pos</a></li>
+                    <li><a href="#"><span> </span>Aenean nec diam libero, sum</a></li>
+                </ul>
+                <div class="sti">
+                    <h4>公告</h4>
+                    <img src="../images/img1.jpg" class="img-responsive" alt="" />
+                    <p>Temporibus autem quibusdam et aut officiis debitis aut rerum </p>
+                    <p>Necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+                    <a href="#" class="link">Read More</a>
+                </div>
+            </div>
+            <div class="copyrights">Collect from <a href="http://www.cssmoban.com/">企业网站模板</a></div>
+            <div class="col-md-8 sedtell">
+                <h3><a href="#">程序猿笔记</a></h3>
+                <h5>这里是最新的几则公开笔记 </h5>
+                <div class="sedtell-top">
+                    <div class="sedtell-left">
+                        <img src="../images/img2.jpg" class="img-responsive" alt="" />
+                    </div>
+                    <div class="sedtell-right">
+                        <p>Nullam in tortor vitae magna ornare lacinia. In vel quam eu quam ultricies cursus nec et orci. </p>
+                        <p>Duis felis ligula, consectetur in posuere vitae, tincidunt sit amet ante. Suspendisse nec diam justo. Nullam varius semper vestibulum.  Integer sit amet justo sem.</p>
+                        <p>Donec sodales vulputate mi, sed laoreet sem fringilla et. Nulla laoreet nisi rhoncus orci tempor ut aliquam turpis rutrum.lorem ipsum dolor sit amet</p>
+                        <a href="#" class="link">Read More</a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="sedtell-bottom">
+                    <div class="sedtell-left1">
+                        <div class="left-top">
+                            <div class="top1">
+                                <i class="umber"></i>
+                            </div>
+                            <div class="top2">
+                                <h3><a href="#">Title</a></h3>
+                                <h5>被浏览最多的笔记 </h5>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <img src="../images/img3.jpg" class="img-responsive" alt="" />
+                        <p>Rices lacinia. Curabitur a arcu ut metus tristique rutrum sit amet non urna. Donec iaculis pretium diam eu aliquam.  </p>
+                        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus</p>
+                        <a href="#" class="link">Read More</a>
+                    </div>
+                    <div class="sedtell-right1">
+                        <div class="left-top">
+                            <div class="top1">
+                                <i class="bell"></i>
+                            </div>
+                            <div class="top2">
+                                <h3><a href="#">Title</a></h3>
+                                <h5>被评论最多的笔记</h5>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <img src="../images/img4.jpg" class="img-responsive" alt="" />
+                        <p>Rices lacinia. Curabitur a arcu ut metus tristique rutrum sit amet non urna. Donec iaculis pretium diam eu aliquam.  </p>
+                        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus</p>
+                        <a href="#" class="link">Read More</a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div class="footer">
+    <div class="container">
+        <p>code by OurCShap</p>
     </div>
 </div>
