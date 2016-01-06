@@ -13,7 +13,7 @@ namespace SocialNoteMark.Models
         public int InterestID { get; set; }
 
         [Required]
-        public int UserName { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         public int BulletionID { get; set; }

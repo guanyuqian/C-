@@ -176,6 +176,10 @@
     <Compile Include="Migrations\201601050938033_wahtever.Designer.cs">
       <DependentUpon>201601050938033_wahtever.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601061041198_AddInterest.cs" />
+    <Compile Include="Migrations\201601061041198_AddInterest.Designer.cs">
+      <DependentUpon>201601061041198_AddInterest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -312,6 +316,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201601050938033_wahtever.resx">
       <DependentUpon>201601050938033_wahtever.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601061041198_AddInterest.resx">
+      <DependentUpon>201601061041198_AddInterest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

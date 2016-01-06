@@ -40,6 +40,6 @@ namespace SocialNoteMark.Models
         public System.Data.Entity.DbSet<SocialNoteMark.Models.FriendRequest> FriendRequests { get; set; }
         public System.Data.Entity.DbSet<SocialNoteMark.Models.Question> Questions { get; set; }
         public System.Data.Entity.DbSet<SocialNoteMark.Models.Answer> Answers { get; set; }
-
+        public System.Data.Entity.DbSet<SocialNoteMark.Models.Interest> Interests { get; set; }
     }
 }
