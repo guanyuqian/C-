@@ -61,6 +61,18 @@ namespace SocialNoteMark.Controllers
             return View();
         }
 
+        [Route("[action]/{id:int}")]
+        public ActionResult delete(int id)
+        {
+            Note note = db.Notes.Find(id);
+            if (note != null)
+            {
+                db.Notes.Remove(note);
+                db.SaveChanges();
+            }    
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Create()
         {
             return View();
