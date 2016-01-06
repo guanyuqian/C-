@@ -6,33 +6,8 @@
 
 <h2>我的招募</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <div class="row">
-    @*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Flag)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </th>
-            <th></th>
-        </tr>*@
-    <div class="col-md-9">
+    <div class="col-md-12">
         <div class="col-md-12 " style="height: 256px;">
             <div class="panel panel-danger">
                 <div class="panel-heading">
@@ -41,7 +16,28 @@
                     </div>
                 </div>
                 <div class="panel-body" style="height: 190px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="js-calendar-graph-svg" width="721" height="110">
+                    <div class="col-md-3">
+                        <div class="col-md-12">
+                            <a class="btn btn-primary" href="/recruitBulletin/History">
+                                <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                                历史视图
+                            </a>
+                        </div><hr>
+                        <div class="col-md-12">
+
+                            <a class="btn btn-primary" href="/recruitBulletin/create">
+                                <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+                                创建招聘
+                            </a>
+                        </div><hr> <hr>
+                        <div class="col-md-12">
+                            <a class="btn btn-primary" href="~/recruitBulletin/AllRecruit">
+                                <span class="glyphicon  glyphicon-th-list" aria-hidden="true"></span>
+                                所有招募
+                            </a>
+                        </div>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="col-md-9 js-calendar-graph-svg" width="721" height="110">
                         <g transform="translate(20 20)">
                             <g transform="translate(0)">
                                 <rect class="day" fill="#eeeeee" y="78" width="11" height="11" data-date="2014-12-20" data-count="0" />
@@ -539,14 +535,7 @@
                             <text class="wday" style="display: none;" text-anchor="middle" dx="-10" dy="87">S</text>
                         </g>
                     </svg>
-                    <a class="btn btn-primary" href="/recruitBulletin/History">
-                        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-                        历史视图
-                    </a>
-                    <a class="btn btn-primary" href="/recruitBulletin/create">
-                        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-                        创建招聘
-                    </a>
+
                 </div>
             </div>
         </div>
@@ -555,87 +544,35 @@
             @foreach (var item in Model)
             {
                 i++;
-        <div class="col-md-12">
-            <div class="panel-group" id="privateAccordion">
+                <div class="col-md-12">
+                    <div class="panel-group" id="privateAccordion">
 
 
 
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <!-- panel-heading -->
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#privateAccordion" href=@("#privateAccordion" + i)>
-                                @item.Name
-                            </a>
-                            <a href="/recruitBulletin/edit/@item.BulletionID" type="button" class="btn btn-sm">修改</a>
-                            <a href="/recruitBulletin/delete/@item.BulletionID" type="button" class="btn btn-sm">删除</a>
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <!-- panel-heading -->
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#privateAccordion" href=@("#privateAccordion" + i)>
+                                        @item.Name
+                                    </a>
+                                    <a href="/recruitBulletin/Details/@item.BulletionID" type="button" class="btn btn-sm">详情</a>
+                                    <a href="/recruitBulletin/edit/@item.BulletionID" type="button" class="btn btn-sm">修改</a>
+                                    <a href="/recruitBulletin/delete/@item.BulletionID" type="button" class="btn btn-sm">删除</a>
+                               
+                                </h4>
+                            </div>
 
-                        </h4>
-                    </div>
-
-                    <div id=@("privateAccordion" + i) class="panel-collapse  collapse">
-                        <div class="panel-body col-md-8">
-                            @item.Content
+                            <div id=@("privateAccordion" + i) class="panel-collapse  collapse">
+                                <div class="panel-body col-md-8">
+                                    @item.Content
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
             }
         </div>
     </div>
-    <div class="col-md-3">
-        <div>
-            <div class="panel panel-danger" style="height:460px;">
-                <div class="panel-heading">
-                    <!-- panel-heading -->
-                    <h4 class="panel-title">
-                       感兴趣的人
-                    </h4>
-                </div>
-                <div class="panel-body">
-                    <!-- panel body -->
 
-                    @for (int j = 0; j < 10; j++)
-                    {
-                        <p>
-                            <img src="@ViewBag.ImageUrl" height="40px" width="40px">
-
-                            <button type="button" class="btn" style="float:right" data-toggle="tooltip" data-placement="top" title="${user.email}"><span class="glyphicon glyphicon-envelope"></span></button>
-                        </p>
-                    }
-
-                </div>
-            </div>
-        </div>
     </div>
-</div>
-
-@*<tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Flag)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BulletionID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BulletionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BulletionID })
-        </td>
-    </tr>*@
-
-
-

@@ -20,24 +20,37 @@ namespace SocialNoteMark.Controllers
         // GET: recruitBulletin
         public ActionResult Index()
         {
-            result = db.Bulletins.SqlQuery("select * from Bulletins where type='1' and flag='0'").ToList();
-            result.Reverse();
-            var userInfo = db.UserInfoes.First(u => u.UserName == User.Identity.Name);
-            ViewBag.ImageUrl = userInfo.ImageUrl;
-            return View(result);
-        }
-        public ActionResult Manage()//只能管理自己的招募
-        {
             result = db.Bulletins.SqlQuery("select * from Bulletins where type='1'and flag='0' AND UserName = '" + @User.Identity.Name + "';").ToList();
             result.Reverse();
-            return View(result);
-        }
-        public ActionResult AllRecruit()
-        {
-            result = db.Bulletins.SqlQuery("select * from Bulletins where type='1' and flag='0'").ToList();
-            result.Reverse();
             var userInfo = db.UserInfoes.First(u => u.UserName == User.Identity.Name);
             ViewBag.ImageUrl = userInfo.ImageUrl;
+            return View(result);
+        }
+        public ActionResult interesting()
+        {
+            String UN = User.Identity.Name;
+            int BulletionId = Int32.Parse(Request.Params["toId"]);
+            List<Interest> b = db.Interests.SqlQuery("select * from Interests where UserName='" + UN + "'and BulletionID='" + BulletionId + "';").ToList();
+            if (b.Count == 0)
+            {
+                db.Interests.Add(new Interest { UserName = User.Identity.Name, BulletionID = Int32.Parse(Request.Params["toId"]) });
+                db.SaveChanges();
+            }
+            return RedirectToAction("AllRecruit"); ;
+        }
+
+   
+
+      
+        public ActionResult AllRecruit()
+        {
+            List<Interest> InterestList = db.Interests.ToList();
+      
+   
+
+            result = db.Bulletins.SqlQuery("select * from Bulletins where type='1' and flag='0'").ToList();
+            result.Reverse();
+
             return View(result);
         }
         public ActionResult History()
@@ -46,19 +59,7 @@ namespace SocialNoteMark.Controllers
             ViewBag.noteList = db.Bulletins.Where(u => u.UserName == UserName).OrderByDescending(u => u.CreateDate).ToList();
             return View(db.Bulletins.Where(u => u.UserName == UserName).OrderByDescending(u => u.CreateDate).ToList());
         }
-        public ActionResult Details2(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Bulletin bulletin = db.Bulletins.Find(id);
-            if (bulletin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bulletin);
-        }
+      
         // GET: recruitBulletin/Details/5
         public ActionResult Details(int? id)
         {
@@ -71,6 +72,18 @@ namespace SocialNoteMark.Controllers
             {
                 return HttpNotFound();
             }
+            var nameList = new List<String>();
+            var imageUrlList = new List<String>();
+            List<Interest> friendList = db.Interests.Where(u => u.BulletionID == id).ToList();
+            foreach (var fd in friendList)
+            {
+                var friendName = fd.UserName;
+                var userInfo = db.UserInfoes.FirstOrDefault(u => u.UserName == friendName);
+                nameList.Add(friendName);
+                imageUrlList.Add(userInfo.ImageUrl);
+            }
+            ViewBag.NameList = nameList;
+            ViewBag.ImageUrlList = imageUrlList;                          
             return View(bulletin);
         }
 
@@ -94,11 +107,12 @@ namespace SocialNoteMark.Controllers
                 bulletin.Flag = 0;
                 bulletin.Type = 1;
                 bulletin.CreateDate = DateTime.Now;
-                Console.WriteLine(Session["userName"]);
+
+         
                 //bulletin.UserName=Session.GetEnumerator
                 db.Bulletins.Add(bulletin);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(Request["nextPage"]);
             }
 
             return View(bulletin);

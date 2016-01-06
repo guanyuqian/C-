@@ -8,7 +8,7 @@
 
 <div class="row">
     @{int i = 0;}
-    <div class="col-md-9">
+    <div class="col-md-12">
         @foreach (var item in Model)
             {
                 i++;
@@ -19,13 +19,25 @@
 
                     <div class="panel panel-danger">
                         <div class="panel-heading">
-                            <!-- panel-heading -->
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#privateAccordion" href=@("#privateAccordion" + i)>
-                                    @item.Name
-                                </a>
-                                <a href="/note/edit/@item.BulletionID" type="button" class="btn btn-sm">我感兴趣</a>
-                            </h4>
+                            <form action="/recruitBulletin/interesting" method="post" commandname="friend" role="form">
+                                <!-- panel-heading -->
+                                <div class="panel-title">
+                                    <input name="toid" type="hidden" value="@item.BulletionID">
+                                    <a data-toggle="collapse" onclick=@("func("+i+")") data-parent="#privateAccordion" href=@("#privateAccordion" + i)>
+                                        @item.Name
+                                    </a>
+                                    @if (item.UserName == @User.Identity.Name)
+                                    {
+                                        <a href="/recruitBulletin/" type="button" class="btn btn-default btn-xs">我的招募</a>
+                                    }
+                                    else
+                                    {
+
+                                        <input type="submit" id="submit" class="btn btn-primary btn-xs" value="我感兴趣">
+                                    }
+
+                                </div>
+                            </form>
                         </div>
 
                         <div id=@("privateAccordion" + i) class="panel-collapse  collapse">
@@ -38,32 +50,4 @@
             </div>
         }
     </div>
-
-    <div class="col-md-3">
-        <div>
-            <div class="panel panel-danger" style="height:460px;">
-                <div class="panel-heading">
-                    <!-- panel-heading -->
-                    <h4 class="panel-title">
-                        感兴趣的人
-                    </h4>
-                </div>
-                <div class="panel-body">
-                    <!-- panel body -->
-
-                    @for (int j = 0; j < 5; j++)
-                    {
-                        <p>
-                            <img src="@ViewBag.ImageUrl" height="40px" width="40px">
-
-                            <button type="button" class="btn" style="float:right" data-toggle="tooltip" data-placement="top" title="${user.email}"><span class="glyphicon glyphicon-envelope"></span></button>
-                        </p>
-                    }
-
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-    
-

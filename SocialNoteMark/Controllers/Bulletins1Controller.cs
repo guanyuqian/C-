@@ -10,22 +10,17 @@ using SocialNoteMark.Models;
 
 namespace SocialNoteMark.Controllers
 {
-    public class BulletinsController : Controller
+    public class Bulletins1Controller : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private List<Bulletin> result;
 
-        // GET: Bulletins
+        // GET: Bulletins1
         public ActionResult Index()
         {
-            result = db.Bulletins.SqlQuery("select * from Bulletins where type='0'and flag='0' AND UserName = '" + @User.Identity.Name + "';").ToList();
-            result.Reverse();
-            var userInfo = db.UserInfoes.First(u => u.UserName == User.Identity.Name);
-            ViewBag.ImageUrl = userInfo.ImageUrl;
-            return View(result);
+            return View(db.Bulletins.ToList());
         }
 
-        // GET: Bulletins/Details/5
+        // GET: Bulletins1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,13 +35,13 @@ namespace SocialNoteMark.Controllers
             return View(bulletin);
         }
 
-        // GET: Bulletins/Create
+        // GET: Bulletins1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Bulletins/Create
+        // POST: Bulletins1/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
@@ -55,21 +50,15 @@ namespace SocialNoteMark.Controllers
         {
             if (ModelState.IsValid)
             {
-                bulletin.UserName = @User.Identity.Name;
-                bulletin.Flag = 0;
-                bulletin.Type = 0;
-                bulletin.CreateDate = DateTime.Now;
-                Console.WriteLine(Session["userName"]);
-                //bulletin.UserName=Session.GetEnumerator
                 db.Bulletins.Add(bulletin);
                 db.SaveChanges();
-                return RedirectToAction(Request["nextPage"]);
+                return RedirectToAction("Index");
             }
 
             return View(bulletin);
         }
 
-        // GET: Bulletins/Edit/5
+        // GET: Bulletins1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,7 +73,7 @@ namespace SocialNoteMark.Controllers
             return View(bulletin);
         }
 
-        // POST: Bulletins/Edit/5
+        // POST: Bulletins1/Edit/5
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
@@ -100,7 +89,7 @@ namespace SocialNoteMark.Controllers
             return View(bulletin);
         }
 
-        // GET: Bulletins/Delete/5
+        // GET: Bulletins1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,7 +104,7 @@ namespace SocialNoteMark.Controllers
             return View(bulletin);
         }
 
-        // POST: Bulletins/Delete/5
+        // POST: Bulletins1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

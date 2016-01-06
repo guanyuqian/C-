@@ -33,18 +33,26 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-  
+
 
     <div class="form-horizontal">
         <hr />
         <div class="form-group">
-            <div class="col-md-11">
-              
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-1" })      
+            <div class="col-md-9">
+
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-1" })
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
             </div>
-            <div class="col-md-1" style="padding-left:0;">
-                <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#confirmModel">Done</button>
+            <div class="col-md-3" style="padding-right:0;">
+                <div class="col-md-6">
+                    <a class="btn btn-primary" href="/Bulletins/">
+                        <span class="glyphicon  glyphicon-chevron-left" aria-hidden="true"></span>
+                        公告管理
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block " data-toggle="modal" data-target="#confirmModel">Done</button>
+                </div>
             </div>
         </div>
         <div id="summernote"></div>
@@ -55,7 +63,7 @@
                 @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
             </div>
-        </div> 
+        </div>
     </div>
 }
 
@@ -73,7 +81,7 @@
                         <button type="button" class="btn btn-primary" id="Yes">Yes</button>
                         <button type="button" class="btn btn-warning" id="No">No</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       
+
 
                     </div>
                 </div><!-- /.modal-content -->

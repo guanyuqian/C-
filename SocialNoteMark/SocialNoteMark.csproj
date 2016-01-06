@@ -163,6 +163,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnswersController.cs" />
+    <Compile Include="Controllers\Bulletins1Controller.cs" />
+    <Compile Include="Controllers\BulletinsController.cs" />
     <Compile Include="Controllers\FriendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -184,7 +186,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\Bulletin.cs" />
-    <Compile Include="Controllers\BulletinsController.cs" />
     <Compile Include="Models\FriendRelation.cs" />
     <Compile Include="Models\FriendRequest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -295,12 +296,13 @@
     <Content Include="Views\recruitBulletin\Index.cshtml" />
     <Content Include="Views\recruitBulletin\History.cshtml" />
     <Content Include="Views\recruitBulletin\AllRecruit.cshtml" />
+    <Content Include="Views\recruitBulletin\Delete.cshtml" />
+    <Content Include="Views\recruitBulletin\Details.cshtml" />
     <Content Include="Views\Bulletins\Create.cshtml" />
     <Content Include="Views\Bulletins\Delete.cshtml" />
     <Content Include="Views\Bulletins\Details.cshtml" />
     <Content Include="Views\Bulletins\Edit.cshtml" />
     <Content Include="Views\Bulletins\Index.cshtml" />
-    <Content Include="Views\recruitBulletin\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,9 +318,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201601050938033_wahtever.resx">
       <DependentUpon>201601050938033_wahtever.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601061041198_AddInterest.resx">
       <DependentUpon>201601061041198_AddInterest.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

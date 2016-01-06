@@ -4,13 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h2>公告详情</h2>
+<h2>招募详情</h2>
 <div class="row">
-    <div class="col-md-12 ">
+    <div class="col-md-6 ">
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <div class="panel-title">
-                    公告信息
+                    招募信息
                 </div>
             </div>
             <div class="panel-body">
@@ -33,9 +33,6 @@
                                 <dd>
                                     @Html.DisplayFor(model => model.CreateDate)
                                 </dd>
-                                <dt>
-                                    标题：
-                                </dt>
                                 <dd>
                                     <blockquote>
 
@@ -45,24 +42,44 @@
                                     </blockquote>
                                 </dd>
                             </dl>
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="col-md-6 ">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    感兴趣的人
+                </div>
+            </div>
+            <div class="panel-body">
+                <!-- panel body -->
+                @if (ViewBag.NameList.Count != 0)
+                {
 
+                    for (int i = 0; i < ViewBag.NameList.Count; i++)
+                    {
+                        <p>
+                            <img src="@ViewBag.ImageUrlList[i]" height="40px" width="40px">
+                            @ViewBag.NameList[i]
+                            <button type="button" class="btn" style="float:right" data-toggle="tooltip" data-placement="top" title="${user.email}"><span class="glyphicon glyphicon-envelope"></span></button>
+                        </p>
+                    }
+                }
+            </div>
+        </div>
+    </div>
     <div class="col-md-12">
-        <a class="btn btn-primary" href="/Bulletins/">
+        <a class="btn btn-primary" href="/recruitBulletin/">
             <span class="glyphicon  glyphicon-chevron-left" aria-hidden="true"></span>
-            公告管理
+            我的招募
         </a>
-        <a class="btn btn-primary" href="/Bulletins/edit/@Model.BulletionID">
+        <a class="btn btn-primary" href="/recruitBulletin/edit/@Model.BulletionID">
             <span class="glyphicon  glyphicon-edit" aria-hidden="true"></span>
-            编辑公告
+            编辑招募
         </a>
     </div>
 </div>
