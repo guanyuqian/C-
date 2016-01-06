@@ -180,6 +180,10 @@
     <Compile Include="Migrations\201601061041198_AddInterest.Designer.cs">
       <DependentUpon>201601061041198_AddInterest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601061234354_fix.cs" />
+    <Compile Include="Migrations\201601061234354_fix.Designer.cs">
+      <DependentUpon>201601061234354_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -319,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601061041198_AddInterest.resx">
       <DependentUpon>201601061041198_AddInterest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601061234354_fix.resx">
+      <DependentUpon>201601061234354_fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

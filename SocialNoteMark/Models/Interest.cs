@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SocialNoteMark.Models
 {
-    class Interest
+    public class Interest
     {
         [Key]
         public int InterestID { get; set; }
