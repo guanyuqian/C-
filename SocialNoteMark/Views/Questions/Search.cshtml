@@ -1,0 +1,15 @@
+﻿@model List<SocialNoteMark.Models.Question>
+
+@{
+    ViewBag.Title = "搜索";
+}
+<h2>搜索您感兴趣的问题</h2>
+
+
+@using (Html.BeginForm("SearchResult","Questions",FormMethod.Get, new { @class = "form-inline", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <input type="text" class="form-control" row="4" name="keyWord" placeholder="要搜索的问题">
+    <button type="submit" class="btn btn-default">搜索</button>
+}

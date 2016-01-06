@@ -1,0 +1,41 @@
+﻿@model SocialNoteMark.Models.Question
+
+@{
+    ViewBag.Title = "问题详情";
+}
+
+<h2>问题详情</h2>
+
+<div>
+    <hr />
+        
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">@Model.Title</h3>
+        </div>
+            <div class="panel-body">
+                <p><b>问题描述：</b>@Model.QuestionDescription </p>
+                <b>提问者：@Model.QuestionerName      提问时间：@Model.CreateTime.ToString()</b>
+            </div>
+    </div>
+@if (ViewBag.answers.Count == 0)
+{
+    <div class="alert alert-danger" role="alert">这个问题还没有人回答QAQ</div>
+}
+else
+{
+    <h2>回答：</h2>
+    foreach (var item in ViewBag.answers)
+    {
+        <div class="panel pill-pane">
+            <div class="panel-body">
+                <b>回答者：</b>@item.AnswererName  <b>回答时间：</b>@item.AnswerTime.ToString()<br />
+                <p>@item.AnswerContent</p><br />
+            </div>
+        </div>
+   }
+}
+   <h3> @Html.ActionLink("我要回答", "AnswerThisQuestion", new { id = Model.QuestionID })</h3>
+
+   <h3> @Html.ActionLink("显示所有问题", "Index")</h3>

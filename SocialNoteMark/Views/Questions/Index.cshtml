@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SocialNoteMark.Models.Question>
+
+@{
+    ViewBag.Title = "最近三天的问题";
+}
+
+<h2>最近三天的问题</h2>
+<br />
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("我要提问", "Create")</li>
+    <li>@Html.ActionLink("搜索问题", "Search")</li>
+</ol>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Title, "Details", new { id = item.QuestionID })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @if (ViewBag.IdentityName != null && ViewBag.IdentityName == item.QuestionerName)
+            {
+                @Html.ActionLink("详情", "Details", new { id = item.QuestionID })<b> | </b>
+                @Html.ActionLink("我要回答", "AnswerThisQuestion", new { id = item.QuestionID })<b> | </b>
+                @Html.ActionLink("编辑", "Edit", new { id = item.QuestionID })<b> | </b>
+                @Html.ActionLink("删除", "Delete", new { id = item.QuestionID })
+            }
+            else
+            {
+                @Html.ActionLink("详情", "Details", new { id = item.QuestionID })<b> | </b>
+                @Html.ActionLink("我要回答", "AnswerThisQuestion", new { id = item.QuestionID })<b> | </b>
+                <u>编辑</u><b> | </b>
+                <u>删除</u>
+            }
+        </td>
+    </tr>
+}
+
+</table>

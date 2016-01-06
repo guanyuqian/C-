@@ -1,0 +1,35 @@
+﻿@model SocialNoteMark.Models.Question
+
+@{
+    ViewBag.Title = "回答问题";
+}
+
+<h2>问题详情</h2>
+
+<div>
+    <h4>问题</h4>
+    <hr />
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Html.DisplayNameFor(model => model.Title)</h3>
+    </div>
+    <div class="panel-body">
+        <p><b>问题描述：</b>@Model.QuestionDescription </p>
+        <b>提问者：@Model.QuestionerName      提问时间：@Model.CreateTime.ToString()</b>
+    </div>
+</div>
+
+@using (Html.BeginForm("AnswerResult", "Questions", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-horizontal">
+        <h4>回答此问题：</h4>
+        <input type="hidden" value="@Model.QuestionID" name="QuestionID">
+        <div>
+            <textarea class="form-control" name="answerContent" style="max-width:1500px; height:300px"   placeholder="在此回答"></textarea> <br />
+        </div>
+        <div>
+            <button class="btn btn-primary btn-block">回答</button>
+        </div>
+    </div>
+}

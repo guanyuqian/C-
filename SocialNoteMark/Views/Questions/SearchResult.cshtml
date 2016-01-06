@@ -1,0 +1,28 @@
+﻿@model List<SocialNoteMark.Models.Question>
+
+@{
+    ViewBag.Title = "搜索结果";
+}
+
+@if (Model.Count != 0)
+{
+    <br />
+    <div class="alert alert-success" role="alert">为您找到以下内容</div>
+    foreach (var item in Model)
+    {
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">@Html.ActionLink(item.Title, "Details/" + item.QuestionID)</h3>
+            </div>
+            <div class="panel-body">
+                <p><b>问题描述：</b>@item.QuestionDescription</p>
+                <b>提问者：@item.QuestionerName    提问时间：@item.CreateTime.ToString()</b>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <br />
+    <div class="alert alert-danger" role="alert">抱歉,未找到您要搜索的内容</div>
+}
