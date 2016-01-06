@@ -19,6 +19,7 @@ namespace SocialNoteMark.Controllers
             var nameList = new List<String>();
             var imageUrlList = new List<String>();
             var requestList = new List<FriendRequest>();
+            var noteList = new List<Note>();
 
             List<FriendRelation> friendList = db.FriendRelations.Where(u => u.FromName == User.Identity.Name).ToList();
             foreach (var fd in friendList)
@@ -27,12 +28,17 @@ namespace SocialNoteMark.Controllers
                 var userInfo = db.UserInfoes.FirstOrDefault(u => u.UserName == friendName);
                 nameList.Add(friendName);
                 imageUrlList.Add(userInfo.ImageUrl);
+
+                List<Note> friendNoteList = db.Notes.Where(u => u.UserName == friendName).ToList();
+                foreach (var note in friendNoteList)
+                    noteList.Add(note);
             }
             requestList = db.FriendRequests.Where(u => u.ToName == User.Identity.Name).ToList();
 
             ViewBag.NameList = nameList;
             ViewBag.ImageUrlList = imageUrlList;
             ViewBag.RequestList = requestList;
+            ViewBag.noteList = noteList;
             return View();
         }
 

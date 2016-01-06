@@ -16,7 +16,16 @@
             </div>
             <div class="panel-body">
                 <!-- panel body -->
-                等待实现
+                @if (ViewBag.noteList.Count != 0)
+                {
+                    foreach (var note in ViewBag.noteList)
+                    {
+                        <p>
+                            @note.UserName 于 @note.CreatTime 创建了笔记
+                            <a href="/note/show/@note.NoteID">@note.Title</a>
+                        </p>
+                    }
+                }
             </div>
         </div>
     </div>
@@ -29,8 +38,8 @@
                         添加好友
                         <button type="button" class="btn btn-primary btn-xs" style="float: right;" data-toggle="modal" data-target="#request_modal">
                             好友申请
-                            <span id="request_badge"class="badge">
-                                    @ViewBag.requestList.Count
+                            <span id="request_badge" class="badge">
+                                @ViewBag.requestList.Count
                             </span>
                         </button>
                     </h4>
@@ -93,7 +102,7 @@
                         {
                             <p>
                                 来自 @request.FromName 的好友申请
-                                <button class="btn btn-primary accept" requestId="@request.FriendRequestID">
+                                <button class="btn btn-primary accept" requestid="@request.FriendRequestID">
                                     <span class="glyphicon glyphicon-ok"></span>
                                     同意
                                 </button>
@@ -119,7 +128,7 @@
                 $("#submit").trigger("click");
             });
 
-            $('#close').click(function () { window.location.reload();});
+            $('#close').click(function () { window.location.reload(); });
 
             $('.accept').click(function () {
                 var id = $(this).attr("requestId");
