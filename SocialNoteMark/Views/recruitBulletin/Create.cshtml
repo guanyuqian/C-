@@ -1,0 +1,112 @@
+﻿@model SocialNoteMark.Models.Bulletin
+
+@{
+    ViewBag.Title = "公告创建";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section head{
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" />
+    @Styles.Render("~/Content/summernote")
+    <style>
+        #Description {
+            max-width: 580px;
+        }
+
+        #Back-to-list {
+            padding-top: 25px;
+            font-size: 20px;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <h2>Create Recruit</h2>
+    </div>
+    <div class="col-md-2 text-right" id="Back-to-list">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <div class="col-md-11">
+
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-1" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-1" style="padding-left:0;">
+                <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#confirmModel">Done</button>
+            </div>
+        </div>
+        <div id="summernote"></div>
+        <div class="form-group" style="display:none">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" id="Submit" />
+                @Html.TextBox("nextPage");
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+}
+
+@section models{
+    <div class="modal fade" id="confirmModel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Choose the next step</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You also need to add any bulletin </p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="Yes">Yes</button>
+                        <button type="button" class="btn btn-warning" id="No">No</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+}
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/summernote");
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                height: 510
+            });
+
+            $('#Yes').click(function () {
+                var html = $('#summernote').summernote('code');
+                $('#Content').val(html);
+                $('#nextPage').val("Create");
+                $('#Submit').trigger("click");
+                return false;
+            }); $('#No').click(function () {
+                var html = $('#summernote').summernote('code');
+                $('#Content').val(html);
+                $('#nextPage').val("Index");
+                $('#Submit').trigger("click");
+                return false;
+            });
+        });
+    </script>
+}
+
+
+

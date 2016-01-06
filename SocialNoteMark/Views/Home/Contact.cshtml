@@ -1,10 +1,89 @@
 ﻿@{
     ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+}<link href="../Content/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="../Content/style.css" rel="stylesheet" type="text/css" media="all" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href='http://fonts.useso.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet' type='text/css'>
+<script src="../Scripts/jquery.min.js"></script>
+<!-- header -->
+<div class="container">
+    <div class="header">
 
-<address><!--TODO: Here is something to discuss about later-->
+        <div class="clearfix"> </div>
+        <!-- script-for-nav -->
+        <script>
+						$( "span.menu" ).click(function() {
+						  $( ".head-nav ul" ).slideToggle(300, function() {
+							// Animation complete.
+						  });
+						});
+        </script>
+        <!-- script-for-nav -->
+    </div>
+</div>
+<div class="banner1">
+    <div class="container">
+
+    </div>
+</div>
+<!-- header -->
+<div class="container">
+    <div class="content-top3">
+        <div class="content">
+            <h2>Contact</h2>
+            <div class="contact">
+       
+                <div class="contact-down">
+                    <div class="contact-right">
+                        <div class="col-md-6 contact-left">
+                  
+                            <p>
+                                如果对 SocialNoteMark 有任何意见或者建议，可以通过此页面给我们发送您的宝贵留言，我们将不胜感激。
+                            </p>
+                            <address>
+                                <strong>
+                                    The Company Name OurCShap.<br>
+                                    No. 3663, Zhongshan North Road,<br>
+                                    ,Shanghai, China
+                                </strong><br>
+                                Telephone: 187 187 1818187<br>
+                                FAX: +1 800 889 9898<br>
+                                E-mail: <a href="mailto:hh@dadsf.org">
+                                    mail@demolink.org
+                                    <script cf-hash="f9e31" type="text/javascript">
+													/* <![CDATA[ */!function(){try{var t="currentScript"in document?document.currentScript:function(){for(var t=document.getElementsByTagName("script"),e=t.length;e--;)if(t[e].getAttribute("cf-hash"))return t[e]}();if(t&&t.previousSibling){var e,r,n,i,c=t.previousSibling,a=c.getAttribute("data-cfemail");if(a){for(e="",r=parseInt(a.substr(0,2),16),n=2;a.length-n;n+=2)i=parseInt(a.substr(n,2),16)^r,e+=String.fromCharCode(i);e=document.createTextNode(e),c.parentNode.replaceChild(e,c)}}}catch(u){}}();/* ]]> */</script>
+                                </a><br>
+                            </address>
+                        </div>
+                        <div class="col-md-6 contact-info">
+                            <form>
+                                <input type="text" name="your name" value="NAME" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'NAME';}">
+                                <input type="text" name="your email" value="EMAIL" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'EMAIL';}">
+                                <textarea cols="70" rows="5" name="message" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'MESSAGE';}">MESSAGE </textarea>
+                                <div class="clearfix"> </div>
+                                <input type="submit" value="SEND" />
+
+                            </form>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div class="footer">
+    <div class="container">
+        <p>code by OurCShap</p>    </div>
+</div>
+<!-- footer -->
+
+@*<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>*@
+
+
+@*<address><!--TODO: Here is something to discuss about later-->
     One Microsoft Way<br />
     Redmond, WA 98052-6399<br />
     <abbr title="Phone">P:</abbr>
@@ -16,4 +95,4 @@
     <strong>储天弘</strong>   <a href="mailto:CtheSky@yeah.net">CtheSky@yeah.net</a><br />
     <strong>李沐凡</strong>   <a href="mailto:872127164@qq.com">872127164@qq.com</a><br />
     <!--TODO: Add your name and email here--> 
-</address>
+</address>*@
