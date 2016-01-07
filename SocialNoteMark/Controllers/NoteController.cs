@@ -101,6 +101,11 @@ namespace SocialNoteMark.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "NoteID,Title,Description,Content,PermissionType")] Note note)
