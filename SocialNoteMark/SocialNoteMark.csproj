@@ -306,6 +306,7 @@
     <Content Include="Views\Bulletins\Details.cshtml" />
     <Content Include="Views\Bulletins\Edit.cshtml" />
     <Content Include="Views\Bulletins\Index.cshtml" />
+    <Content Include="Views\Note\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -73,6 +73,34 @@ namespace SocialNoteMark.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("[action]/{id:int}")]
+        public ActionResult Edit(int id)
+        {
+            Note note = db.Notes.Find(id);
+            if (note != null)
+            {
+                ViewBag.Note = note;
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit([Bind(Include = "NoteID,Title,Description,Content,PermissionType")] Note note)
+        {
+            Note n = db.Notes.Find(note.NoteID);
+            n.Content = note.Content;
+            n.Description = note.Description;
+            n.PermissionType = note.PermissionType;
+            n.EditTime = DateTime.Now;
+
+            String tagStr = Request.Form["tag"];
+            addTag(note.NoteID, tagStr);
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Create()
         {
             return View();
@@ -99,7 +127,7 @@ namespace SocialNoteMark.Controllers
 
         private void addTag(int noteId, String tagStr)
         {
-            if (tagStr == null) return;
+            if (tagStr == null || tagStr == "") return;
             String[] tags = tagStr.Substring(0,tagStr.Length-1).Split('/');
             foreach (String name in tags) 
             {

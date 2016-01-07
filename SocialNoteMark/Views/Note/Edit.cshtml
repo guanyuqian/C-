@@ -1,0 +1,189 @@
+﻿@model SocialNoteMark.Models.Note
+
+@{
+    ViewBag.Title = "Create Note";
+}
+
+@section head{
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" />
+    @Styles.Render("~/Content/summernote")
+    <style>
+        #Description {
+            max-width: 580px;
+        }
+
+        #Back-to-list {
+            padding-top: 25px;
+            font-size: 20px;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <h2>Create Note</h2>
+    </div>
+    <div class="col-md-2 text-right" id="Back-to-list">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="col-md-1" style="padding-left:0;">
+                <button class="btn btn-info btn-block" data-toggle="modal" data-target="#tagModel">Tag</button>
+            </div>
+            <div class="col-md-1" style="padding-left:0;">
+                <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#confirmModel">Done</button>
+            </div>
+        </div>
+        <div id="summernote"></div>
+        <div class="form-group" style="display:none">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" id="Submit" />
+                <input name="tag" class="form-control text-box single-line" id="Tag" type="text" value="">
+                @Html.EditorFor(model => model.NoteID, new { htmlAttributes = new { @class = "form-control",@id="Id" } })
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PermissionType, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+}
+
+<div style="display:none">
+    <div id="originalId">@ViewBag.Note.NoteID</div>
+    <div id="originalTitle">@ViewBag.Note.Title</div>
+    <div id="originalDescription">@ViewBag.Note.Description</div>
+    <div id="originalContent">@Html.Raw(@ViewBag.Note.Content)</div>
+    <div id="originalPermissionType">@ViewBag.Note.PermissionType</div>
+</div>
+
+@section models{
+    <div class="modal fade" id="confirmModel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Choose Access Permission</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                        <button class="close" aria-label="Close" type="button" data-dismiss="alert"><span aria-hidden="true">×</span></button>
+                        <span>It seems that you haven't choose tag for note.Click here</span>
+                        <button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true">Tag</span></button>
+                    </div><!--alert message-->
+                    <p>Access Permission decides the range of persons who can read this note.You can also changed it is Edit Page later. </p>
+                    <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+                        <a class="btn btn-default" role="button" href="#" id="btn_public">Public</a>
+                        <a class="btn btn-default" role="button" href="#" id="btn_friendly">Friendly</a>
+                        <a class="btn btn-default" role="button" href="#" id="btn_private">Private</a>
+                    </div><!--permission button group-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="Done">Done</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="tagModel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button id="close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><span class="glyphicon glyphicon-tags"></span>  添加标签</h4>
+                </div>
+                <div class="modal-body ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input id="text_tag" type="text" class="form-control single-line">
+                        </div>
+                        <div class="col-md-2">
+                            <button id="btn_add_tag" class="btn btn-primary">添加</button>
+                        </div>
+                    </div>
+                    <hr />
+                    <div id="tag_holder">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="confirm_tag">确认</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/summernote");
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                height: 510
+            });
+
+            $('#btn_add_tag').click(function () {
+                var tag = $('#text_tag').val();
+                $('#text_tag').val('');
+                if (tag == "") return;
+                var $tagHolder = $('#tag_holder');
+                var tagHtml = $tagHolder.html();
+                tagHtml = tagHtml + '<button class=\"self_delete btn btn-primary\" date-tag=\"' + tag + '\"><span>' + tag + '</span><span class=\"glyphicon glyphicon-remove\"></span></button>';
+                $tagHolder.html(tagHtml);
+                $('.self_delete').click(function () { $(this).remove(); })
+            });
+
+            $('#confirm_tag').click(function () {
+                var $tagHolder = $('#tag_holder');
+                var tags = '';
+                $tagHolder.children().each(function () {
+                    tags += $(this).children().first().html() + '/';
+                });
+                $('#Tag').val(tags);
+                $('#close').trigger('click');
+            });
+
+
+            $('#btn_public').click(function () { $('#PermissionType').val(0); });
+            $('#btn_friendly').click(function () { $('#PermissionType').val(1); });
+            $('#btn_private').click(function () { $('#PermissionType').val(2); });
+
+            var id = $('#originalId').html();
+            var title = $('#originalTitle').html();
+            var content = $('#originalContent').html();
+            var description = $('#originalDescription').html();
+            var permissionType = $('#originalPermissionType').html();
+            $('#Id').val(id);
+            $('#Title').val(title);
+            $('#Description').val(description);
+            $('.note-editable').html(content);
+
+            $('#Done').click(function () {
+                var html = $('#summernote').summernote('code');
+                $('#Content').val(html);
+                $('#Submit').trigger("click");
+                return false;
+            });
+        });
+    </script>
+}
+
+
