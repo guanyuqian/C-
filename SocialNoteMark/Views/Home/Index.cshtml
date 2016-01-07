@@ -42,36 +42,36 @@
                 <h4>招募信息</h4>
                 <h6>这里都是最新的招募信息，程序猿们可以于此选择自己心仪的工作。</h6>
                 <ul>
-                    <li><a href="#"><span> </span>Nam at urna quis lacus utre </a></li>
-                    <li><a href="#"><span> </span>Posuere justo velitet laotinoc </a></li>
-                    <li><a href="#"><span> </span>Donec egestas diam sed odioti</a></li>
-                    <li><a href="#"><span> </span>Integer eu nibh vitae massa</a></li>
-                    <li><a href="#"><span> </span>Cras vehicula nunc sed umb</a></li>
-                    <li><a href="#"><span> </span>Quisque non risus dui, vel pos</a></li>
-                    <li><a href="#"><span> </span>Aenean nec diam libero, sum</a></li>
+                    @for (int i = 0; i < 7 || i < ViewBag.RecruitList.Count; i++)
+                    {
+                        <li><a href="recruitBulletin/AllRecruit"><span> </span> @ViewBag.RecruitList[i].Name </a></li>
+                    }
+                   
+                
                 </ul>
                 <div class="sti">
-                    <h4>公告</h4>
+             
+                    <h4>笔记</h4>
+             
                     <img src="../images/img1.jpg" class="img-responsive" alt="" />
-                    <p>Temporibus autem quibusdam et aut officiis debitis aut rerum </p>
-                    <p>Necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
-                    <a href="#" class="link">Read More</a>
+           
+                    <p>在这里大家可以看到最新最热的几条笔记哦。</p>
+                    <a href="/note/" class="link">Read More</a>
+            
                 </div>
             </div>
             <div class="copyrights">Collect from <a href="http://www.cssmoban.com/">企业网站模板</a></div>
             <div class="col-md-8 sedtell">
-                <h3><a href="#">程序猿笔记</a></h3>
-                <h5>这里是最新的几则公开笔记 </h5>
+                <h3><a href="#">管理员想对大家说的话</a></h3>
+                <h5>公告</h5>
                 <div class="sedtell-top">
                     <div class="sedtell-left">
                         <img src="../images/img2.jpg" class="img-responsive" alt="" />
                     </div>
                     <div class="sedtell-right">
-                        <p>Nullam in tortor vitae magna ornare lacinia. In vel quam eu quam ultricies cursus nec et orci. </p>
-                        <p>Duis felis ligula, consectetur in posuere vitae, tincidunt sit amet ante. Suspendisse nec diam justo. Nullam varius semper vestibulum.  Integer sit amet justo sem.</p>
-                        <p>Donec sodales vulputate mi, sed laoreet sem fringilla et. Nulla laoreet nisi rhoncus orci tempor ut aliquam turpis rutrum.lorem ipsum dolor sit amet</p>
-                        <a href="#" class="link">Read More</a>
-                    </div>
+                        <p>@ViewBag.newBulletin.Name  </p>
+                        <p> @Html.Raw(@ViewBag.newBulletin.Content)</p> 
+</div>
                     <div class="clearfix"> </div>
                 </div>
                 <div class="sedtell-bottom">
@@ -81,15 +81,17 @@
                                 <i class="umber"></i>
                             </div>
                             <div class="top2">
-                                <h3><a href="#">Title</a></h3>
+                                @if(ViewBag.NoteList[0]!=null){<h3><a href="#">@ViewBag.NoteList[0].Title</a></h3>}
+                                else
+                                { <h3><a href="#">暂无</a></h3>}
                                 <h5>被浏览最多的笔记 </h5>
                             </div>
                             <div class="clearfix"> </div>
                         </div>
                         <img src="../images/img3.jpg" class="img-responsive" alt="" />
-                        <p>Rices lacinia. Curabitur a arcu ut metus tristique rutrum sit amet non urna. Donec iaculis pretium diam eu aliquam.  </p>
-                        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus</p>
-                        <a href="#" class="link">Read More</a>
+                      @if (ViewBag.NoteList[0] != null)
+                      {  <p>@ViewBag.NoteList[0].Description</p>}
+                        <a href="/note/" class="link">Read More</a>
                     </div>
                     <div class="sedtell-right1">
                         <div class="left-top">
@@ -97,15 +99,18 @@
                                 <i class="bell"></i>
                             </div>
                             <div class="top2">
-                                <h3><a href="#">Title</a></h3>
+                                @if (ViewBag.NoteList[1] != null)
+                                {<h3><a href="#">@ViewBag.NoteList[1].Title</a></h3>}
+                                else
+                                { <h3><a href="#">暂无</a></h3>}
                                 <h5>被评论最多的笔记</h5>
                             </div>
                             <div class="clearfix"> </div>
                         </div>
                         <img src="../images/img4.jpg" class="img-responsive" alt="" />
-                        <p>Rices lacinia. Curabitur a arcu ut metus tristique rutrum sit amet non urna. Donec iaculis pretium diam eu aliquam.  </p>
-                        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus</p>
-                        <a href="#" class="link">Read More</a>
+                        @if (ViewBag.NoteList[1] != null)
+                        {  <p>@ViewBag.NoteList[1].Description</p>}
+                        <a href="/note/" class="link">Read More</a>
                     </div>
                     <div class="clearfix"> </div>
                 </div>

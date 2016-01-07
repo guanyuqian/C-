@@ -88,6 +88,7 @@ namespace SocialNoteMark.Controllers
         }
 
         // GET: recruitBulletin/Create
+   
         public ActionResult Create()
         {
 
@@ -98,7 +99,7 @@ namespace SocialNoteMark.Controllers
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "BulletionID,UserName,Type,Flag,Name,Content,CreateDate")] Bulletin bulletin)
         {
             if (ModelState.IsValid)
@@ -137,7 +138,7 @@ namespace SocialNoteMark.Controllers
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "BulletionID,UserName,Type,Flag,Name,Content,CreateDate")] Bulletin bulletin)
         {
             if (ModelState.IsValid)

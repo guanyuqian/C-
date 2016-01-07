@@ -26,9 +26,7 @@
     <div class="col-md-10">
         <h2>Create Recruit</h2>
     </div>
-    <div class="col-md-2 text-right" id="Back-to-list">
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+
 </div>
 
 @using (Html.BeginForm())
@@ -61,8 +59,7 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" id="Submit" />
                 @Html.TextBox("nextPage");
-                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })         
             </div>
         </div>
     </div>

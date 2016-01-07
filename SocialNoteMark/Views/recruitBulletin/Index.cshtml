@@ -558,14 +558,13 @@
                                     </a>
                                     <a href="/recruitBulletin/Details/@item.BulletionID" type="button" class="btn btn-sm">详情</a>
                                     <a href="/recruitBulletin/edit/@item.BulletionID" type="button" class="btn btn-sm">修改</a>
-                                    <a href="/recruitBulletin/delete/@item.BulletionID" type="button" class="btn btn-sm">删除</a>
-                               
+                                    <a href="/recruitBulletin/delete/@item.BulletionID" type="button" class="btn btn-sm">删除</a>                              
                                 </h4>
                             </div>
 
                             <div id=@("privateAccordion" + i) class="panel-collapse  collapse">
                                 <div class="panel-body col-md-8">
-                                    @item.Content
+                                   @Html.Raw(@item.Content)
                                 </div>
                             </div>
                         </div>
